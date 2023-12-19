@@ -19,6 +19,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <fcntl.h>
+#include "./libft/libft.h"
 
 # define W 119
 # define A 97
@@ -68,6 +69,8 @@ typedef struct  s_data
 
 }         t_data;
 
-
+int Checkline(int i, int fd, char *line);
+int checkone(char *line);
+int CheckTopDown();
 
 #endif

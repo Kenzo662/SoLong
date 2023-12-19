@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 
-#include "so_long.h"
+/* #include "so_long.h"
 
 int main(void)
 {
@@ -38,5 +38,4 @@ int main(void)
         i++;
     }
     mlx_loop(mlx);
-    gnl()
-}
+} */
