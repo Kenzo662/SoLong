@@ -6,7 +6,7 @@
 /*   By: klopez <klopez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 17:38:57 by klopez            #+#    #+#             */
-/*   Updated: 2023/12/18 19:26:54 by klopez           ###   ########.fr       */
+/*   Updated: 2023/12/21 19:54:57 by klopez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ typedef struct  s_data
 
 }         t_data;
 
-int Checkline(int i, int fd, char *line);
+char  **Checkline(int i, int fd, char **map);
 int checkone(char *line);
-int CheckTopDown();
+int CheckTopDown(char **map);
 
 #endif

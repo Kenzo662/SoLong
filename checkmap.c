@@ -7,64 +7,69 @@ int checkone(char *line)
     i = 0;
     while(line[i])
     {
-        if (line[i] != '1' && line[i] != '\n')
+        if (line[i] != '1' && line[i])
             return(1);
         i++;
     }
     return(0);
 }
 
-int CheckTopDown()
+int CheckTopDown(char **map)
 {
     int fd;
-    char *line;
+    int line;
     int i;
 
     i = 0;
     fd = open("map.ber", O_RDONLY);
-    line = get_next_line(fd);
-    while(line[i])
+    line = 0;
+    map[line] = get_next_line(fd);
+    while(map[line][i])
     {
-        if (line[i] != '1' && line[i] != '\n')
+        if (map[line][i] != '1' && map[line][i] != '\n')
         {
             perror("La map n'est pas valide");
             exit(EXIT_FAILURE);
         }
     i++;
     }
-    Checkline(i, fd, line);
-    return (i);
+    Checkline(i, fd, map);
 }
 
-int Checkline(int i, int fd, char *line)
+char  **Checkline(int i, int fd, char **map)
 {
     int bytes;
     int j;
     int countE;
     int countP;
+    int line;
 
-    line = get_next_line(fd);
+    line = 0;
+    map[line] = get_next_line(fd);
     countE = 0;
     countP = 0;
-    printf("line = %s\n", line);
-    while(checkone(line) != 0)
+    bytes = 1;
+    while(bytes == 1)
     {
+        bytes = checkone(map[line]);
+        if (bytes == 0)
+            break;
         j = 0;
-        if(line[0] != '1')
+        if(map[line][0] != '1')
         {
             perror("La map n'est pas valide");
             exit(EXIT_FAILURE);
         }
-        while(line[j])
+        while(map[line][j])
         {
-            if (line[j] != '1' && line[j] != '0' && line[j] != 'P' && line[j] != 'E' && line [j] != 'C' && line[j] != '\n')
+            if (map[line][j] != '1' && map[line][j] != '0' && map[line][j] != 'P' && map[line][j] != 'E' && map[line][j] != 'C' && map[line][j] != '\n')
             {
                 perror("La map n'est pas valide1");
                 exit(EXIT_FAILURE);
             }
-            if (line[j] == 'E')
+            if (map[line][j] == 'E')
                 countE++;
-            if (line[j] == 'P')
+            if (map[line][j] == 'P')
                 countP++; 
             if (countE > 1 || countP > 1)
             {
@@ -73,14 +78,27 @@ int Checkline(int i, int fd, char *line)
             }
             j++;
         }
-        if (i != j)
+        if(map[line][j - 1] != '\n')
+            break;
+        if (map[line][j - 2] != '1')
         {
-            perror("La map n'est pas valide3");
+            perror("La map n'est pas fermer");
             exit(EXIT_FAILURE);
         }
-        line = get_next_line(fd);
-        printf("line = %s\n", line);
+        if (i != j)
+        {
+            perror("La map n'est pas rectangle");
+            exit(EXIT_FAILURE);
+        }
+        map[++line] = get_next_line(fd); 
     }
+    if (checkone(map[line]) == 0)
+            return(map);
+    else 
+        {
+            perror("La map n'est pas valide6");
+            exit(EXIT_FAILURE);
+        }
 
 }
 
@@ -88,5 +106,6 @@ int Checkline(int i, int fd, char *line)
 
 int main(void)
 {
-    CheckTopDown();
+    char *tab[10];
+    CheckTopDown(tab);
 }
