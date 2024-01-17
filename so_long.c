@@ -13,45 +13,6 @@
 
 #include "so_long.h"
 
-
-char	*change_path(char *textures, int i)
-{
-	char	*number;
-	char	*str;
-	char	*path;
-
-	number = ft_itoa(i);
-	str = ft_strjoin(textures, number);
-	free(number);
-	path = ft_strjoin(str, ".xpm");
-	free(str);
-	return (path);
-}
-
-void    init_textures(t_data *data)
-{
-    data->textures->exit = (t_img *)malloc(sizeof(t_img));
-    data->textures->player = (t_img *)malloc(sizeof(t_img));
-    data->textures->wall.img = mlx_xpm_file_to_image(data->mlx,"./Sprites/textures/sol.xpm", &(int){0}, &(int){0});
-    data->textures->ground.img = mlx_xpm_file_to_image(data->mlx,"./Sprites/textures/sol1.xpm", &(int){0}, &(int){0});
-    data->textures->exit[0].img = mlx_xpm_file_to_image(data->mlx,"./Sprites/textures/exit.xpm", &(int){0}, &(int){0});
-    data->textures->player[0].img = mlx_xpm_file_to_image(data->mlx,"./Sprites/skins/BrolyFace0.xpm", &(int){0}, &(int){0});
-}
-
-void    init_collec(t_data *data)
-{
-    int i = 0;
-    char *path;
-    data->textures->collec = (t_img *)malloc(sizeof(t_img) * 7);
-    while(i < 7)
-    {
-        path = change_path("./Sprites/items/Crystal", i);
-        data->textures->collec[i].img = mlx_xpm_file_to_image(data->mlx, path, &(int){0}, &(int){0});
-        i++;
-        free(path);
-    }
-}
-
 int main(int ac, char **av)
 {
     char *path;
@@ -92,9 +53,9 @@ int main(int ac, char **av)
             else if (data.map[i][j] == 'C')
             {
                 mlx_put_image_to_window(data.mlx, data.win, data.textures->collec[k].img , j * 64, i * 64);
-                if (k == 6)
-                    k = 0;
                 k++;
+                if (k == 7)
+                    k = 0;
             }
             j++;
         }

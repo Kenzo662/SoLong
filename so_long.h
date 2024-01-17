@@ -79,8 +79,6 @@ typedef struct  s_data
     t_img       img;
     t_axes      p_pos;
     t_textures  *textures;
-
-
 }         t_data;
 
 int     checkone(char *line);
@@ -91,5 +89,7 @@ void    MallocTab(t_data *data, char *path);
 void    init_textures(t_data *data);
 char    *change_path(char *str, int index);
 void    init_collec(t_data *data);
+t_img    ft_get_image_transparance(void *mlx, t_img bg, char *path);
+void    ft_swap_px(t_img bg, t_img *c, int i, int j);
 
 #endif
