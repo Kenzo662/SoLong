@@ -6,7 +6,7 @@
 /*   By: klopez <klopez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 17:38:57 by klopez            #+#    #+#             */
-/*   Updated: 2023/12/21 19:54:57 by klopez           ###   ########.fr       */
+/*   Updated: 2024/01/17 15:00:14 by klopez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,19 @@
 # define ESC 65307
 
 # define TSize 64
+
+typedef struct s_utils
+{
+    char    *str;
+    int     countE;
+    int     countP;
+    int     countC;
+    int     bytes;
+    int     line;
+    int     i;
+    int     j;
+    int     k;
+}           t_utils;
 
 typedef struct s_axes
 {
@@ -53,24 +66,30 @@ typedef struct s_textures
     t_img   *ennemies;
     t_img   wall;
     t_img   ground;
-
+    t_img   *exit;
+    t_img   *collec;
 }           t_textures;
 
 typedef struct  s_data 
 {
     void        *mlx;
-    void        *window;
+    void        *win;
     char        **map;
     t_axes      axes;
     t_img       img;
     t_axes      p_pos;
-    t_textures  textures;
+    t_textures  *textures;
 
 
 }         t_data;
 
-char  **Checkline(int i, int fd, char **map);
-int checkone(char *line);
-int CheckTopDown(char **map);
+int     checkone(char *line);
+void    CheckWhile(t_data *data, int fd, t_utils *utils);
+void    CheckChar(t_data *data, int fd, t_utils *utils);
+void    Checkmap(t_data *data, int fd);
+void    MallocTab(t_data *data, char *path);
+void    init_textures(t_data *data);
+char    *change_path(char *str, int index);
+void    init_collec(t_data *data);
 
 #endif
