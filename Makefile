@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wextra -g3
 
 NAME = so_long
 
-SRCS = so_long.c checkmap2.c init.c
+SRCS = so_long.c checkmap2.c init.c img.c movements.c
 
 OBJ = $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: klopez <klopez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 17:39:01 by klopez            #+#    #+#             */
-/*   Updated: 2024/01/17 19:04:33 by klopez           ###   ########.fr       */
+/*   Updated: 2024/01/21 17:52:22 by klopez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ int main(int ac, char **av)
     MallocTab(&data, path);
     fd = open(path, O_RDONLY);
     Checkmap(&data, fd);
-    data.mlx = mlx_init();
-    data.win = mlx_new_window(data.mlx, data.axes.x * 64, data.axes.y * 64, "so_long");
-    data.textures = (t_textures *)malloc(sizeof(t_textures));
+    init_data(&data);
     init_textures(&data);
     init_collec(&data);
     //img = mlx_xpm_file_to_image(mlx, path, &img_width, &img_height);
@@ -41,7 +39,6 @@ int main(int ac, char **av)
         j = 0;
         while(j < data.axes.x)
         {
-            // printf("x = %d, y = %d\n", data.axes.x, data.axes.y);
             if (data.map[i][j] == '1')
                 mlx_put_image_to_window(data.mlx, data.win , data.textures->wall.img , j * 64, i * 64);
             else if (data.map[i][j] == '0')
@@ -56,10 +53,12 @@ int main(int ac, char **av)
                 k++;
                 if (k == 7)
                     k = 0;
+                data.utils.countC++;
             }
             j++;
         }
         i++;
     }
+    mlx_key_hook(data.win, keyboard, &data);
     mlx_loop(data.mlx);
 } 

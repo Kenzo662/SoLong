@@ -6,7 +6,7 @@
 /*   By: klopez <klopez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 17:38:57 by klopez            #+#    #+#             */
-/*   Updated: 2024/01/17 15:00:14 by klopez           ###   ########.fr       */
+/*   Updated: 2024/01/21 18:00:37 by klopez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,12 @@ typedef struct s_textures
     t_img   *collec;
 }           t_textures;
 
+typedef struct s_player
+{
+    t_axes  p_pos;
+    t_axes  destpos;
+}       t_player;
+
 typedef struct  s_data 
 {
     void        *mlx;
@@ -77,9 +83,12 @@ typedef struct  s_data
     char        **map;
     t_axes      axes;
     t_img       img;
-    t_axes      p_pos;
     t_textures  *textures;
+    t_utils     utils;
+    t_player    player;
 }         t_data;
+
+
 
 int     checkone(char *line);
 void    CheckWhile(t_data *data, int fd, t_utils *utils);
@@ -89,7 +98,15 @@ void    MallocTab(t_data *data, char *path);
 void    init_textures(t_data *data);
 char    *change_path(char *str, int index);
 void    init_collec(t_data *data);
-t_img    ft_get_image_transparance(void *mlx, t_img bg, char *path);
-void    ft_swap_px(t_img bg, t_img *c, int i, int j);
+t_img   transparance(void *mlx, t_img bg, char *path);
+void    swap(t_img bg, t_img *c, int i, int j);
+int     walkable(t_data *data, t_axes pos);
+void    imgtowin(t_data *data, void *img, t_axes pos);
+void    init_data(t_data *data);
+int	    keyboard(int keycode, t_data *data);
+void    moveup(t_data *data);
+void    movedown(t_data *data);
+void    moveleft(t_data *data);
+void    moveright(t_data *data);
 
 #endif

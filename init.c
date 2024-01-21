@@ -1,5 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: klopez <klopez@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/19 15:14:04 by klopez            #+#    #+#             */
+/*   Updated: 2024/01/21 17:30:08 by klopez           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
+void    init_data(t_data *data)
+{
+    data->utils.countC = 0;
+    data->mlx = mlx_init();
+    data->win = mlx_new_window(data->mlx, data->axes.x * 64, data->axes.y * 64, "so_long");
+    data->textures = (t_textures *)malloc(sizeof(t_textures));
+    data->player.p_pos.x = 0;
+    data->player.p_pos.y = 0;
+}
 char	*change_path(char *textures, int i)
 {
 	char	*number;
@@ -24,7 +45,7 @@ void    init_textures(t_data *data)
     data->textures->exit[0].img = mlx_xpm_file_to_image(data->mlx,"./Sprites/textures/exit.xpm", &(int){0}, &(int){0});
     data->textures->ground.addr= mlx_get_data_addr(data->textures->ground.img, &data->textures->ground.bpp, &data->textures->ground.size_line,
             &data->textures->ground.endian);
-    data->textures->player[0] = ft_get_image_transparance(data->mlx, data->textures->ground, "./Sprites/skins/BrolyFace0.xpm");
+    data->textures->player[0] = transparance(data->mlx, data->textures->ground, "./Sprites/skins/BrolyFace0.xpm");
 }
 
 void    init_collec(t_data *data)
@@ -35,49 +56,9 @@ void    init_collec(t_data *data)
     while(i < 7)
     {
         path = change_path("./Sprites/items/Crystal", i);
-        data->textures->collec[i] = ft_get_image_transparance(data->mlx, data->textures->ground, path);
+        data->textures->collec[i] = transparance(data->mlx, data->textures->ground, path);
         i++;
         free(path);
     }
 }
 
-t_img    ft_get_image_transparance(void *mlx, t_img bg, char *path)
-{
-    int        i;
-    int        j;
-    t_img    c;
-
-    j = -1;
-    i = -1;
-    c.img = mlx_xpm_file_to_image(mlx, path, &c.width, &c.height);
-    c.addr = mlx_get_data_addr(c.img, &c.bpp, &c.size_line,
-            &c.endian);
-    while (++i < (c.size_line / 4))
-    {
-        while (++j <= (c.size_line / 4))
-        {
-            if ((c.addr[(i * c.size_line) \
-                + (j * (c.bpp / 8))] == 0) \
-                && (c.addr[(i * c.size_line) \
-                + (j * (c.bpp / 8)) + 1] == 0) \
-                && (c.addr[(i * c.size_line) \
-                + (j * (c.bpp / 8)) + 2] == 0))
-                ft_swap_px(bg, &c, i, j);
-        }
-        j = -1;
-    }
-    return (c);
-}
-
-void    ft_swap_px(t_img bg, t_img *c, int i, int j)
-{
-    c->addr[(i * c->size_line) + (j * (c->bpp / 8))]
-        = bg.addr[(i * c->size_line) \
-        + (j * (c->bpp / 8))];
-    c->addr[(i * c->size_line) + (j * (c->bpp / 8)) + 1]
-        = bg.addr[(i * c->size_line) \
-        + (j * (c->bpp / 8)) + 1];
-    c->addr[(i * c->size_line) + (j * (c->bpp / 8)) + 2]
-        = bg.addr[(i * c->size_line) \
-        + (j * (c->bpp / 8)) + 2];
-}
