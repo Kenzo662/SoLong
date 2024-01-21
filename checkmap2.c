@@ -65,7 +65,6 @@ void    Checkmap(t_data *data, int fd)
     utils.j = ft_strlen( data->map[utils.line]);
     data->axes.x = ft_strlen(data->map[utils.line]);
     data->axes.y = utils.line + 1;
-    //printf("E = %d, p = %d\n", utils.countE, utils.countP);
     if (checkone(data->map[utils.line]) == 0 && utils.i == utils.j + 1 && utils.countE == 1 && utils.countP == 1)
     {
         printf("La map est valide");

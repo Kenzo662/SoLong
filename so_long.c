@@ -46,7 +46,11 @@ int main(int ac, char **av)
             else if (data.map[i][j] == 'E')
                 mlx_put_image_to_window(data.mlx, data.win, data.textures->exit[0].img , j * 64, i * 64);
             else if (data.map[i][j] == 'P')
+            {
                 mlx_put_image_to_window(data.mlx, data.win, data.textures->player[0].img , j * 64, i * 64);
+                data.player.p_pos.x = j;
+                data.player.p_pos.y = i;
+            }
             else if (data.map[i][j] == 'C')
             {
                 mlx_put_image_to_window(data.mlx, data.win, data.textures->collec[k].img , j * 64, i * 64);

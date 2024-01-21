@@ -20,6 +20,8 @@ void    init_data(t_data *data)
     data->textures = (t_textures *)malloc(sizeof(t_textures));
     data->player.p_pos.x = 0;
     data->player.p_pos.y = 0;
+    data->player.destpos.x = 0;
+    data->player.destpos.y = 0;
 }
 char	*change_path(char *textures, int i)
 {
