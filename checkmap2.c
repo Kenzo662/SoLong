@@ -17,6 +17,7 @@ void    MallocTab(t_data *data, char *path)
     t_utils utils;
 
     utils.i = 0;
+    utils.k = 0;
     int fd;
 
     fd = open(path, O_RDONLY);

@@ -14,6 +14,7 @@
 
 void    init_data(t_data *data)
 {
+    data->utils.k = 0;
     data->utils.countC = 0;
     data->mlx = mlx_init();
     data->win = mlx_new_window(data->mlx, data->axes.x * 64, data->axes.y * 64, "so_long");
@@ -22,6 +23,11 @@ void    init_data(t_data *data)
     data->player.p_pos.y = 0;
     data->player.destpos.x = 0;
     data->player.destpos.y = 0;
+    data->utils.linenumber = 0;
+    data->utils.linelen = 0;
+    data->utils.i = 0;
+    data->utils.j = 0;
+    data->utils.k = 0;
 }
 char	*change_path(char *textures, int i)
 {

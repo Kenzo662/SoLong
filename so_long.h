@@ -40,6 +40,8 @@ typedef struct s_utils
     int     i;
     int     j;
     int     k;
+    int     linenumber;
+    int     linelen;
 }           t_utils;
 
 typedef struct s_axes
@@ -108,5 +110,6 @@ void    moveup(t_data *data);
 void    movedown(t_data *data);
 void    moveleft(t_data *data);
 void    moveright(t_data *data);
+void    printimg(t_data *data);
 
 #endif

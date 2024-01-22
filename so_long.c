@@ -33,36 +33,40 @@ int main(int ac, char **av)
     init_data(&data);
     init_textures(&data);
     init_collec(&data);
-    //img = mlx_xpm_file_to_image(mlx, path, &img_width, &img_height);
-    while (i < data.axes.y)
-    {
-        j = 0;
-        while(j < data.axes.x)
-        {
-            if (data.map[i][j] == '1')
-                mlx_put_image_to_window(data.mlx, data.win , data.textures->wall.img , j * 64, i * 64);
-            else if (data.map[i][j] == '0')
-                mlx_put_image_to_window(data.mlx, data.win, data.textures->ground.img , j * 64, i * 64);
-            else if (data.map[i][j] == 'E')
-                mlx_put_image_to_window(data.mlx, data.win, data.textures->exit[0].img , j * 64, i * 64);
-            else if (data.map[i][j] == 'P')
-            {
-                mlx_put_image_to_window(data.mlx, data.win, data.textures->player[0].img , j * 64, i * 64);
-                data.player.p_pos.x = j;
-                data.player.p_pos.y = i;
-            }
-            else if (data.map[i][j] == 'C')
-            {
-                mlx_put_image_to_window(data.mlx, data.win, data.textures->collec[k].img , j * 64, i * 64);
-                k++;
-                if (k == 7)
-                    k = 0;
-                data.utils.countC++;
-            }
-            j++;
-        }
-        i++;
-    }
+    printimg(&data);
     mlx_key_hook(data.win, keyboard, &data);
     mlx_loop(data.mlx);
 } 
+
+void    printimg(t_data *data)
+{
+     while (data->utils.i < data->axes.y)
+    {
+        data->utils.j = 0;
+        while(data->utils.j < data->axes.x)
+        {
+            if (data->map[data->utils.i][data->utils.j] == '1')
+                mlx_put_image_to_window(data->mlx, data->win , data->textures->wall.img , data->utils.j * 64, data->utils.i * 64);
+            else if (data->map[data->utils.i][data->utils.j] == '0')
+                mlx_put_image_to_window(data->mlx, data->win, data->textures->ground.img , data->utils.j * 64, data->utils.i * 64);
+            else if (data->map[data->utils.i][data->utils.j] == 'E')
+                mlx_put_image_to_window(data->mlx, data->win, data->textures->exit[0].img , data->utils.j * 64, data->utils.i * 64);
+            else if (data->map[data->utils.i][data->utils.j] == 'P')
+            {
+                mlx_put_image_to_window(data->mlx, data->win, data->textures->player[0].img , data->utils.j * 64, data->utils.i * 64);
+                data->player.p_pos.x = data->utils.j;
+                data->player.p_pos.y = data->utils.i;
+            }
+            else if (data->map[data->utils.i][data->utils.j] == 'C')
+            {
+                mlx_put_image_to_window(data->mlx, data->win, data->textures->collec[data->utils.k].img , data->utils.j * 64, data->utils.i * 64);
+                data->utils.k++;
+                if (data->utils.k == 7)
+                    data->utils.k = 0;
+                data->utils.countC++;
+            }
+            data->utils.j++;
+        }
+        data->utils.i++;
+    }
+}
