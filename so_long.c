@@ -17,7 +17,6 @@ int main(int ac, char **av)
 {
     char *path;
     t_data data;
-    int i = 0, j = 0, k = 0;
     int fd;
 
     data.map = NULL;
@@ -33,8 +32,10 @@ int main(int ac, char **av)
     init_data(&data);
     init_textures(&data);
     init_collec(&data);
+    init_player(&data);
     printimg(&data);
     mlx_key_hook(data.win, keyboard, &data);
+    mlx_loop_hook(data.mlx, &clock, &data);
     mlx_loop(data.mlx);
 } 
 
@@ -65,6 +66,8 @@ void    printimg(t_data *data)
                     data->utils.k = 0;
                 data->utils.countC++;
             }
+            else if (data->map[data->utils.i][data->utils.j] == 'Z')
+                mlx_put_image_to_window(data->mlx, data->win, data->textures->ennemies[0].img , data->utils.j * 64, data->utils.i * 64);
             data->utils.j++;
         }
         data->utils.i++;

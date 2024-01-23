@@ -23,11 +23,14 @@ void    init_data(t_data *data)
     data->player.p_pos.y = 0;
     data->player.destpos.x = 0;
     data->player.destpos.y = 0;
+    data->player.side = 0;
     data->utils.linenumber = 0;
     data->utils.linelen = 0;
     data->utils.i = 0;
     data->utils.j = 0;
     data->utils.k = 0;
+    data->frame = 0;
+    data->clock = 0;
 }
 char	*change_path(char *textures, int i)
 {
@@ -47,13 +50,13 @@ void    init_textures(t_data *data)
 {
 
     data->textures->exit = (t_img *)malloc(sizeof(t_img));
-    data->textures->player = (t_img *)malloc(sizeof(t_img));
+    data->textures->ennemies = (t_img *)malloc(sizeof(t_img));
     data->textures->wall.img = mlx_xpm_file_to_image(data->mlx,"./Sprites/textures/sol.xpm", &(int){0}, &(int){0});
     data->textures->ground.img = mlx_xpm_file_to_image(data->mlx,"./Sprites/textures/sol1.xpm", &(int){0}, &(int){0});
     data->textures->exit[0].img = mlx_xpm_file_to_image(data->mlx,"./Sprites/textures/exit.xpm", &(int){0}, &(int){0});
-    data->textures->ground.addr= mlx_get_data_addr(data->textures->ground.img, &data->textures->ground.bpp, &data->textures->ground.size_line,
-            &data->textures->ground.endian);
-    data->textures->player[0] = transparance(data->mlx, data->textures->ground, "./Sprites/skins/BrolyFace0.xpm");
+    data->textures->ground.addr= mlx_get_data_addr(data->textures->ground.img, &data->textures->ground.bpp, 
+    &data->textures->ground.size_line, &data->textures->ground.endian);
+    data->textures->ennemies[0] = transparance(data->mlx, data->textures->ground, "./Sprites/skins/BuuFace.xpm");
 }
 
 void    init_collec(t_data *data)
@@ -65,6 +68,20 @@ void    init_collec(t_data *data)
     {
         path = change_path("./Sprites/items/Crystal", i);
         data->textures->collec[i] = transparance(data->mlx, data->textures->ground, path);
+        i++;
+        free(path);
+    }
+}
+
+void    init_player(t_data *data)
+{
+    data->textures->player = (t_img *)malloc(sizeof(t_img) * 2);
+    int i = 0;
+    char *path;
+    while(i < 2)
+    {
+        path = change_path("./Sprites/skins/Broly", i);
+        data->textures->player[i] = transparance(data->mlx, data->textures->ground, path);
         i++;
         free(path);
     }

@@ -76,6 +76,7 @@ typedef struct s_player
 {
     t_axes  p_pos;
     t_axes  destpos;
+    int     side;
 }       t_player;
 
 typedef struct  s_data 
@@ -88,12 +89,15 @@ typedef struct  s_data
     t_textures  *textures;
     t_utils     utils;
     t_player    player;
+    int         clock;
+    int         frame;
+
 }         t_data;
 
 
 
 int     checkone(char *line);
-void    CheckWhile(t_data *data, int fd, t_utils *utils);
+void    CheckWhile(t_data *data, t_utils *utils);
 void    CheckChar(t_data *data, int fd, t_utils *utils);
 void    Checkmap(t_data *data, int fd);
 void    MallocTab(t_data *data, char *path);
@@ -111,5 +115,9 @@ void    movedown(t_data *data);
 void    moveleft(t_data *data);
 void    moveright(t_data *data);
 void    printimg(t_data *data);
+void    movedirection(t_data *data, int dir);
+int     clock(t_data *data);
+void    init_player(t_data *data);
+void	playeranim(t_data *data);
 
 #endif
