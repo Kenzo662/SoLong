@@ -6,11 +6,11 @@
 /*   By: klopez <klopez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 19:27:49 by klopez            #+#    #+#             */
-/*   Updated: 2024/01/18 13:22:04 by klopez           ###   ########.fr       */
+/*   Updated: 2024/01/23 17:11:03 by klopez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+/* #include "so_long.h"
 
 void    MallocTab(t_data *data, char *path)
 {
@@ -119,7 +119,7 @@ void    CheckWhile(t_data *data, int fd, t_utils *utils)
             utils->countP++; 
         utils->j++;
     }
-}
+} */
 
 /* int main(void)
 {

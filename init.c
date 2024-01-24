@@ -6,7 +6,7 @@
 /*   By: klopez <klopez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:14:04 by klopez            #+#    #+#             */
-/*   Updated: 2024/01/21 17:30:08 by klopez           ###   ########.fr       */
+/*   Updated: 2024/01/24 15:03:30 by klopez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,26 +24,12 @@ void    init_data(t_data *data)
     data->player.destpos.x = 0;
     data->player.destpos.y = 0;
     data->player.side = 0;
-    data->utils.linenumber = 0;
-    data->utils.linelen = 0;
     data->utils.i = 0;
     data->utils.j = 0;
     data->utils.k = 0;
     data->frame = 0;
     data->clock = 0;
-}
-char	*change_path(char *textures, int i)
-{
-	char	*number;
-	char	*str;
-	char	*path;
-
-	number = ft_itoa(i);
-	str = ft_strjoin(textures, number);
-	free(number);
-	path = ft_strjoin(str, ".xpm");
-	free(str);
-	return (path);
+    data->clockcount = 0;
 }
 
 void    init_textures(t_data *data)
@@ -75,13 +61,27 @@ void    init_collec(t_data *data)
 
 void    init_player(t_data *data)
 {
-    data->textures->player = (t_img *)malloc(sizeof(t_img) * 2);
+    data->textures->player = (t_img *)malloc(sizeof(t_img) * 12);
     int i = 0;
     char *path;
-    while(i < 2)
+    while(i < 12)
     {
         path = change_path("./Sprites/skins/Broly", i);
         data->textures->player[i] = transparance(data->mlx, data->textures->ground, path);
+        i++;
+        free(path);
+    }
+}
+
+void    init_start(t_data *data)
+{
+    data->textures->player_start = (t_img *)malloc(sizeof(t_img) * 6);
+    int i = 0;
+    char *path;
+    while(i < 6)
+    {
+        path = change_path("./Sprites/start/Start", i);
+        data->textures->player_start[i] = transparance(data->mlx, data->textures->ground, path);
         i++;
         free(path);
     }

@@ -6,7 +6,7 @@
 /*   By: klopez <klopez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 17:39:01 by klopez            #+#    #+#             */
-/*   Updated: 2024/01/21 17:52:22 by klopez           ###   ########.fr       */
+/*   Updated: 2024/01/24 17:26:33 by klopez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,10 @@ int main(int ac, char **av)
     init_textures(&data);
     init_collec(&data);
     init_player(&data);
+    init_start(&data);
     printimg(&data);
     mlx_key_hook(data.win, keyboard, &data);
-    mlx_loop_hook(data.mlx, &clock, &data);
+    //mlx_loop_hook(data.mlx, &clock, &data);
     mlx_loop(data.mlx);
 } 
 
@@ -54,7 +55,6 @@ void    printimg(t_data *data)
                 mlx_put_image_to_window(data->mlx, data->win, data->textures->exit[0].img , data->utils.j * 64, data->utils.i * 64);
             else if (data->map[data->utils.i][data->utils.j] == 'P')
             {
-                mlx_put_image_to_window(data->mlx, data->win, data->textures->player[0].img , data->utils.j * 64, data->utils.i * 64);
                 data->player.p_pos.x = data->utils.j;
                 data->player.p_pos.y = data->utils.i;
             }
@@ -72,4 +72,7 @@ void    printimg(t_data *data)
         }
         data->utils.i++;
     }
+    startplayeranim(data);
 }
+
+

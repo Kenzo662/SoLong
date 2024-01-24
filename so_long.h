@@ -6,7 +6,7 @@
 /*   By: klopez <klopez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 17:38:57 by klopez            #+#    #+#             */
-/*   Updated: 2024/01/21 18:00:37 by klopez           ###   ########.fr       */
+/*   Updated: 2024/01/24 15:15:13 by klopez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ typedef struct s_utils
     int     i;
     int     j;
     int     k;
-    int     linenumber;
-    int     linelen;
+
 }           t_utils;
 
 typedef struct s_axes
@@ -70,6 +69,7 @@ typedef struct s_textures
     t_img   ground;
     t_img   *exit;
     t_img   *collec;
+    t_img   *player_start;
 }           t_textures;
 
 typedef struct s_player
@@ -91,6 +91,7 @@ typedef struct  s_data
     t_player    player;
     int         clock;
     int         frame;
+    int     clockcount;
 
 }         t_data;
 
@@ -119,5 +120,9 @@ void    movedirection(t_data *data, int dir);
 int     clock(t_data *data);
 void    init_player(t_data *data);
 void	playeranim(t_data *data);
+void	init_clock(t_data *data);
+void    printdirection(t_data *data);
+void    startplayeranim(t_data *data);
+void    init_start(t_data *data);
 
 #endif
