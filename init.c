@@ -30,6 +30,12 @@ void    init_data(t_data *data)
     data->frame = 0;
     data->clock = 0;
     data->clockcount = 0;
+    data->player.attack_side = 0;
+    init_textures(data);
+    init_collec(data);
+    init_player(data);
+    init_start(data);
+    init_attack(data);
 }
 
 void    init_textures(t_data *data)

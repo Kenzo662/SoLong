@@ -12,11 +12,6 @@
 
 #include "so_long.h"
 
-void    imgtowin(t_data *data, void *img, t_axes pos)
-{
-    mlx_put_image_to_window(data->mlx, data->win, img, pos.x * 64, pos.y * 64);
-}
-
 t_img    transparance(void *mlx, t_img bg, char *path)
 {
     int        i;

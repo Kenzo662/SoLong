@@ -30,10 +30,7 @@ int main(int ac, char **av)
     fd = open(path, O_RDONLY);
     Checkmap(&data, fd);
     init_data(&data);
-    init_textures(&data);
-    init_collec(&data);
-    init_player(&data);
-    init_start(&data);
+    //init_attack(&data);
     printimg(&data);
     mlx_key_hook(data.win, keyboard, &data);
     //mlx_loop_hook(data.mlx, &clock, &data);

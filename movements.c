@@ -22,6 +22,7 @@ void    moves(t_data *data)
 void    moveup(t_data *data)
 {
     data->player.side = 6;
+    data->player.attack_side = 8;
     data->player.destpos.x = data->player.p_pos.x;
     data->player.destpos.y = data->player.p_pos.y - 1;
     moves(data);
@@ -30,6 +31,7 @@ void    moveup(t_data *data)
 void    movedown(t_data *data)
 {
     data->player.side = 0;
+    data->player.attack_side = 0;
     data->player.destpos.x = data->player.p_pos.x;
     data->player.destpos.y = data->player.p_pos.y + 1;
     moves(data);
@@ -38,6 +40,7 @@ void    movedown(t_data *data)
 void    moveleft(t_data *data)
 {
     data->player.side = 9;
+    data->player.attack_side = 12;
     data->player.destpos.x = data->player.p_pos.x - 1;
     data->player.destpos.y = data->player.p_pos.y;
     moves(data);
@@ -46,7 +49,9 @@ void    moveleft(t_data *data)
 void    moveright(t_data *data)
 {
     data->player.side = 3;
+    data->player.attack_side = 4;
     data->player.destpos.x = data->player.p_pos.x + 1;
     data->player.destpos.y = data->player.p_pos.y;
     moves(data);
 }
+

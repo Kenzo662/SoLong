@@ -26,6 +26,7 @@
 # define S 115
 # define D 100
 # define ESC 65307
+# define E 101
 
 # define TSize 64
 
@@ -70,6 +71,7 @@ typedef struct s_textures
     t_img   *exit;
     t_img   *collec;
     t_img   *player_start;
+    t_img   *player_attack;
 }           t_textures;
 
 typedef struct s_player
@@ -77,6 +79,7 @@ typedef struct s_player
     t_axes  p_pos;
     t_axes  destpos;
     int     side;
+    int     attack_side;
 }       t_player;
 
 typedef struct  s_data 
@@ -108,7 +111,6 @@ void    init_collec(t_data *data);
 t_img   transparance(void *mlx, t_img bg, char *path);
 void    swap(t_img bg, t_img *c, int i, int j);
 int     walkable(t_data *data, t_axes pos);
-void    imgtowin(t_data *data, void *img, t_axes pos);
 void    init_data(t_data *data);
 int	    keyboard(int keycode, t_data *data);
 void    moveup(t_data *data);
@@ -124,5 +126,8 @@ void	init_clock(t_data *data);
 void    printdirection(t_data *data);
 void    startplayeranim(t_data *data);
 void    init_start(t_data *data);
+void    init_attack(t_data *data);
+void	attack_anim(t_data *data);
+void    init_destpos(t_data *data);
 
 #endif
