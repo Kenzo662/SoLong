@@ -31,11 +31,16 @@ void    init_data(t_data *data)
     data->clock = 0;
     data->clockcount = 0;
     data->player.attack_side = 0;
+    data->player.enemiespos.x = 0;
+    data->player.enemiespos.y = 0;
+    data->utils.whichside = 0;
     init_textures(data);
     init_collec(data);
     init_player(data);
     init_start(data);
     init_attack(data);
+    init_startenemies(data);
+    init_enemiesdeath(data);
 }
 
 void    init_textures(t_data *data)

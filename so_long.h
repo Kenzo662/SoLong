@@ -41,7 +41,7 @@ typedef struct s_utils
     int     i;
     int     j;
     int     k;
-
+    int     whichside;
 }           t_utils;
 
 typedef struct s_axes
@@ -72,6 +72,9 @@ typedef struct s_textures
     t_img   *collec;
     t_img   *player_start;
     t_img   *player_attack;
+    t_img   *buu_start;
+    t_img   *buu_death;
+
 }           t_textures;
 
 typedef struct s_player
@@ -80,6 +83,7 @@ typedef struct s_player
     t_axes  destpos;
     int     side;
     int     attack_side;
+    t_axes  enemiespos;
 }       t_player;
 
 typedef struct  s_data 
@@ -117,7 +121,7 @@ void    moveup(t_data *data);
 void    movedown(t_data *data);
 void    moveleft(t_data *data);
 void    moveright(t_data *data);
-void    printimg(t_data *data);
+void    printmap(t_data *data);
 void    movedirection(t_data *data, int dir);
 int     clock(t_data *data);
 void    init_player(t_data *data);
@@ -129,5 +133,8 @@ void    init_start(t_data *data);
 void    init_attack(t_data *data);
 void	attack_anim(t_data *data);
 void    init_destpos(t_data *data);
+void    init_startenemies(t_data *data);
+void    startenemiesanim(t_data *data);
+void    init_enemiesdeath(t_data *data);
 
 #endif

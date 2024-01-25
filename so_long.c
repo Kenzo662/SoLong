@@ -30,16 +30,14 @@ int main(int ac, char **av)
     fd = open(path, O_RDONLY);
     Checkmap(&data, fd);
     init_data(&data);
-    //init_attack(&data);
-    printimg(&data);
+    printmap(&data);
     mlx_key_hook(data.win, keyboard, &data);
-    //mlx_loop_hook(data.mlx, &clock, &data);
     mlx_loop(data.mlx);
 } 
 
-void    printimg(t_data *data)
+void    printmap(t_data *data)
 {
-     while (data->utils.i < data->axes.y)
+    while (data->utils.i < data->axes.y)
     {
         data->utils.j = 0;
         while(data->utils.j < data->axes.x)
@@ -64,12 +62,17 @@ void    printimg(t_data *data)
                 data->utils.countC++;
             }
             else if (data->map[data->utils.i][data->utils.j] == 'Z')
+            {
+                data->player.enemiespos.x = data->utils.j;
+                data->player.enemiespos.y = data->utils.i;
                 mlx_put_image_to_window(data->mlx, data->win, data->textures->ennemies[0].img , data->utils.j * 64, data->utils.i * 64);
+            }
             data->utils.j++;
         }
         data->utils.i++;
     }
     startplayeranim(data);
+    startenemiesanim(data);
 }
 
 

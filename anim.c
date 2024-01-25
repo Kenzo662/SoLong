@@ -52,10 +52,23 @@ void    startplayeranim(t_data *data)
 	while(i < 6)
 	{
 		mlx_put_image_to_window(data->mlx, data->win, data->textures->player_start[i].img , data->player.p_pos.x * 64, data->player.p_pos.y * 64);
-		usleep(175000);
+		usleep(100000);
 		mlx_do_sync(data->mlx);
 		i++;
 	}
+}
+
+void    startenemiesanim(t_data *data)
+{
+	int i = 0;
+	while(i < 7)
+	{
+		mlx_put_image_to_window(data->mlx, data->win, data->textures->buu_start[i].img , data->player.enemiespos.x * 64, data->player.enemiespos.y * 64);
+		usleep(75000);
+		mlx_do_sync(data->mlx);
+		i++;
+	}
+	mlx_put_image_to_window(data->mlx, data->win, data->textures->ennemies[0].img , data->player.enemiespos.x * 64, data->player.enemiespos.y * 64);
 }
 
 void    printdirection(t_data *data)
@@ -74,21 +87,28 @@ void    printdirection(t_data *data)
 void	attack_anim(t_data *data)
 {
 	init_destpos(data);
-	mlx_put_image_to_window(data->mlx, data->win, data->textures->player_attack[data->player.attack_side].img, data->player.p_pos.x * 64, data->player.p_pos.y * 64);
-    mlx_do_sync(data->mlx);
-    usleep(125000);
-    mlx_put_image_to_window(data->mlx, data->win, data->textures->player_attack[data->player.attack_side + 1].img, data->player.p_pos.x * 64, data->player.p_pos.y * 64);
-    mlx_do_sync(data->mlx);
-    usleep(125000);
-    mlx_put_image_to_window(data->mlx, data->win, data->textures->player_attack[data->player.attack_side + 2].img, data->player.p_pos.x * 64, data->player.p_pos.y * 64); 
-	mlx_do_sync(data->mlx);
-    usleep(125000);
-	mlx_put_image_to_window(data->mlx, data->win, data->textures->player_attack[data->player.attack_side + 3].img, data->player.p_pos.x * 64, data->player.p_pos.y * 64); 
-	mlx_do_sync(data->mlx);
-    usleep(125000);
+	int i = 0;
+	int j = 0;
+	while(i < 4)
+	{
+		mlx_put_image_to_window(data->mlx, data->win, data->textures->player_attack[data->player.attack_side + i].img, data->player.p_pos.x * 64, data->player.p_pos.y * 64);
+		mlx_do_sync(data->mlx);
+    	usleep(50000);
+		i++;
+	}
 	mlx_put_image_to_window(data->mlx, data->win, data->textures->player[data->player.side + 2].img, data->player.p_pos.x * 64, data->player.p_pos.y * 64);
 	printf("c == %d\n", data->map[data->player.destpos.y][data->player.destpos.x]);
 	if (data->map[data->player.destpos.y][data->player.destpos.x] == 'Z')
+	{
+		while(j < 10)
+		{
+			mlx_put_image_to_window(data->mlx, data->win, data->textures->buu_death[j].img, data->player.destpos.x * 64, data->player.destpos.y * 64);
+			mlx_do_sync(data->mlx);
+			usleep(50000);
+			j++;
+		}
 		mlx_put_image_to_window(data->mlx, data->win, data->textures->ground.img, data->player.destpos.x * 64, data->player.destpos.y * 64);
+	}
+	
 
 }
