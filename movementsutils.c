@@ -2,8 +2,11 @@
 
 int    walkable(t_data *data, t_axes pos)
 {
-    if (data->map[pos.y][pos.x] == '1' || data->map[pos.y][pos.x] == 'Z' || data->map[pos.y][pos.x] == 'E')
-        return(0);
+
+    if (data->map[pos.y][pos.x] == '1' || (data->map[pos.y][pos.x] == 'Z') || data->map[pos.y][pos.x] == 'E')
+	{
+		return(0);
+	}
     return(1);
 }
 
@@ -43,6 +46,10 @@ int	keyboard(int keycode, t_data *data)
 	else if (keycode == E)
 	{
 		attack_anim(data);
+	}
+	else if (keycode == ESC)
+	{
+		leave(data);
 	}
 	return (0);
 }

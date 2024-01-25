@@ -75,4 +75,9 @@ void    printmap(t_data *data)
     startenemiesanim(data);
 }
 
-
+void    leave(t_data *data)
+{
+    mlx_destroy_display(data->mlx);
+    mlx_destroy_window(data->mlx, data->win);
+    exit(0);
+}

@@ -93,22 +93,20 @@ void	attack_anim(t_data *data)
 	{
 		mlx_put_image_to_window(data->mlx, data->win, data->textures->player_attack[data->player.attack_side + i].img, data->player.p_pos.x * 64, data->player.p_pos.y * 64);
 		mlx_do_sync(data->mlx);
-    	usleep(50000);
+    	usleep(42500);
 		i++;
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->textures->player[data->player.side + 2].img, data->player.p_pos.x * 64, data->player.p_pos.y * 64);
-	printf("c == %d\n", data->map[data->player.destpos.y][data->player.destpos.x]);
 	if (data->map[data->player.destpos.y][data->player.destpos.x] == 'Z')
 	{
 		while(j < 10)
 		{
 			mlx_put_image_to_window(data->mlx, data->win, data->textures->buu_death[j].img, data->player.destpos.x * 64, data->player.destpos.y * 64);
 			mlx_do_sync(data->mlx);
-			usleep(50000);
+			usleep(42500);
 			j++;
 		}
 		mlx_put_image_to_window(data->mlx, data->win, data->textures->ground.img, data->player.destpos.x * 64, data->player.destpos.y * 64);
+		data->map[data->player.destpos.y][data->player.destpos.x] = '0';
 	}
-	
-
 }

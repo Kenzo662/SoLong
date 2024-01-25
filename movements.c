@@ -15,9 +15,10 @@
 
 void    moves(t_data *data)
 {
-    printf("side = %d\n" , data->utils.whichside);
     if (walkable(data, data->player.destpos) == 1)
-        printdirection(data);   
+    {
+        printdirection(data);  
+    } 
 }
 
 void    moveup(t_data *data)

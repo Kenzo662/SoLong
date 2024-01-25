@@ -136,5 +136,6 @@ void    init_destpos(t_data *data);
 void    init_startenemies(t_data *data);
 void    startenemiesanim(t_data *data);
 void    init_enemiesdeath(t_data *data);
+void    leave(t_data *data);
 
 #endif
