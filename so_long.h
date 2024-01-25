@@ -41,7 +41,10 @@ typedef struct s_utils
     int     i;
     int     j;
     int     k;
+    int     l;
     int     whichside;
+    int     collect;
+    int     loop;
 }           t_utils;
 
 typedef struct s_axes
@@ -81,6 +84,7 @@ typedef struct s_player
 {
     t_axes  p_pos;
     t_axes  destpos;
+    t_axes     exitpos;
     int     side;
     int     attack_side;
     t_axes  enemiespos;
@@ -96,10 +100,6 @@ typedef struct  s_data
     t_textures  *textures;
     t_utils     utils;
     t_player    player;
-    int         clock;
-    int         frame;
-    int     clockcount;
-
 }         t_data;
 
 
@@ -134,8 +134,11 @@ void    init_attack(t_data *data);
 void	attack_anim(t_data *data);
 void    init_destpos(t_data *data);
 void    init_startenemies(t_data *data);
-void    startenemiesanim(t_data *data);
+int     startenemiesanim(t_data *data);
 void    init_enemiesdeath(t_data *data);
 void    leave(t_data *data);
+void    printchar(t_data *data, void *img);
+void    endgame(t_data *data);
+void    init_exit(t_data *data);
 
 #endif

@@ -28,6 +28,17 @@ void    moveup(t_data *data)
     data->player.destpos.x = data->player.p_pos.x;
     data->player.destpos.y = data->player.p_pos.y - 1;
     data->utils.whichside = 1;
+    if (data->map[data->player.destpos.y][data->player.destpos.x] == 'C')
+    {
+        data->map[data->player.destpos.y][data->player.destpos.x] = '0';
+        data->utils.collect++;
+        printf("collect = %d\n", data->utils.collect);
+    }
+    if (data->utils.collect == data->utils.countC)
+    {
+        mlx_put_image_to_window(data->mlx, data->win, data->textures->exit[1].img, data->player.exitpos.x * 64, data->player.exitpos.y * 64);
+        endgame(data);
+    }
     moves(data);
 }
 
@@ -38,6 +49,17 @@ void    movedown(t_data *data)
     data->player.destpos.x = data->player.p_pos.x;
     data->player.destpos.y = data->player.p_pos.y + 1;
     data->utils.whichside = 0;
+    if (data->map[data->player.destpos.y][data->player.destpos.x] == 'C')
+    {
+        data->map[data->player.destpos.y][data->player.destpos.x] = '0';
+        data->utils.collect++;
+        printf("collect = %d\n", data->utils.collect);
+    }
+    if (data->utils.collect == data->utils.countC)
+    {
+        mlx_put_image_to_window(data->mlx, data->win, data->textures->exit[1].img, data->player.exitpos.x * 64, data->player.exitpos.y * 64);
+        endgame(data);
+    }
     moves(data);
 }
 
@@ -48,6 +70,17 @@ void    moveleft(t_data *data)
     data->player.destpos.x = data->player.p_pos.x - 1;
     data->player.destpos.y = data->player.p_pos.y;
     data->utils.whichside = 3;
+    if (data->map[data->player.destpos.y][data->player.destpos.x] == 'C')
+    {
+        data->map[data->player.destpos.y][data->player.destpos.x] = '0';
+        data->utils.collect++;
+        printf("collect = %d\n", data->utils.collect);
+    }
+    if (data->utils.collect == data->utils.countC)
+    {
+        mlx_put_image_to_window(data->mlx, data->win, data->textures->exit[1].img, data->player.exitpos.x * 64, data->player.exitpos.y * 64);
+        endgame(data);
+    }
     moves(data);
 }
 
@@ -58,6 +91,17 @@ void    moveright(t_data *data)
     data->player.destpos.x = data->player.p_pos.x + 1;
     data->player.destpos.y = data->player.p_pos.y;
     data->utils.whichside = 4;
+    if (data->map[data->player.destpos.y][data->player.destpos.x] == 'C')
+    {
+        data->map[data->player.destpos.y][data->player.destpos.x] = '0';
+        data->utils.collect++;
+        printf("collect = %d\n", data->utils.collect);
+    }
+    if (data->utils.collect == data->utils.countC)
+    {
+        mlx_put_image_to_window(data->mlx, data->win, data->textures->exit[1].img, data->player.exitpos.x * 64, data->player.exitpos.y * 64);
+        endgame(data);
+    }
     moves(data);
 }
 

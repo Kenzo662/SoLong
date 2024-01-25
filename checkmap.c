@@ -122,13 +122,3 @@ void    CheckWhile(t_data *data, t_utils *utils)
         utils->j++;
     }
 }
-
-
-
-/* int main(void)
-{
-    int fd = open("map.ber", O_RDONLY);
-    t_data data;
-    MallocTab(&data);
-    Checkmap(&data, fd);
-} */

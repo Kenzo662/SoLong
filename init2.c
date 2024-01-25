@@ -33,17 +33,17 @@ void    init_destpos(t_data *data)
     }
     if(data->player.attack_side == 12)
     {
-        data->player.destpos.x = data->player.p_pos.x + 1;
+        data->player.destpos.x = data->player.p_pos.x - 1;
         data->player.destpos.y = data->player.p_pos.y;
     }
 }
 
 void    init_startenemies(t_data *data)
 {
-    data->textures->buu_start = (t_img *)malloc(sizeof(t_img) * 7);
+    data->textures->buu_start = (t_img *)malloc(sizeof(t_img) * 8);
     int i = 0;
     char *path;
-    while(i < 7)
+    while(i < 8)
     {
         path = change_path("./Sprites/start/StartB", i);
         data->textures->buu_start[i] = transparance(data->mlx, data->textures->ground, path);
@@ -61,6 +61,20 @@ void    init_enemiesdeath(t_data *data)
     {
         path = change_path("./Sprites/BuuDeath/Death", i);
         data->textures->buu_death[i] = transparance(data->mlx, data->textures->ground, path);
+        i++;
+        free(path);
+    }
+}
+
+void    init_exit(t_data *data)
+{
+    data->textures->exit = (t_img *)malloc(sizeof(t_img) * 2);
+    int i = 0;
+    char *path;
+    while(i < 2)
+    {
+        path = change_path("./Sprites/textures/exit", i);
+        data->textures->exit[i] = transparance(data->mlx, data->textures->ground, path);
         i++;
         free(path);
     }

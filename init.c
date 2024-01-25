@@ -27,13 +27,15 @@ void    init_data(t_data *data)
     data->utils.i = 0;
     data->utils.j = 0;
     data->utils.k = 0;
-    data->frame = 0;
-    data->clock = 0;
-    data->clockcount = 0;
     data->player.attack_side = 0;
     data->player.enemiespos.x = 0;
     data->player.enemiespos.y = 0;
     data->utils.whichside = 0;
+    data->utils.collect = 0;
+    data->utils.loop = 0;
+    data->utils.l = 0;
+    data->player.exitpos.x = 0;
+    data->player.exitpos.y = 0;
     init_textures(data);
     init_collec(data);
     init_player(data);
@@ -41,16 +43,14 @@ void    init_data(t_data *data)
     init_attack(data);
     init_startenemies(data);
     init_enemiesdeath(data);
+    init_exit(data);
 }
 
 void    init_textures(t_data *data)
 {
-
-    data->textures->exit = (t_img *)malloc(sizeof(t_img));
     data->textures->ennemies = (t_img *)malloc(sizeof(t_img));
     data->textures->wall.img = mlx_xpm_file_to_image(data->mlx,"./Sprites/textures/sol.xpm", &(int){0}, &(int){0});
     data->textures->ground.img = mlx_xpm_file_to_image(data->mlx,"./Sprites/textures/sol1.xpm", &(int){0}, &(int){0});
-    data->textures->exit[0].img = mlx_xpm_file_to_image(data->mlx,"./Sprites/textures/exit.xpm", &(int){0}, &(int){0});
     data->textures->ground.addr= mlx_get_data_addr(data->textures->ground.img, &data->textures->ground.bpp, 
     &data->textures->ground.size_line, &data->textures->ground.endian);
     data->textures->ennemies[0] = transparance(data->mlx, data->textures->ground, "./Sprites/skins/BuuFace.xpm");

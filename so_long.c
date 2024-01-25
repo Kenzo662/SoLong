@@ -31,53 +31,21 @@ int main(int ac, char **av)
     Checkmap(&data, fd);
     init_data(&data);
     printmap(&data);
+    mlx_loop_hook(data.mlx, startenemiesanim, &data);
     mlx_key_hook(data.win, keyboard, &data);
     mlx_loop(data.mlx);
 } 
-
-void    printmap(t_data *data)
-{
-    while (data->utils.i < data->axes.y)
-    {
-        data->utils.j = 0;
-        while(data->utils.j < data->axes.x)
-        {
-            if (data->map[data->utils.i][data->utils.j] == '1')
-                mlx_put_image_to_window(data->mlx, data->win , data->textures->wall.img , data->utils.j * 64, data->utils.i * 64);
-            else if (data->map[data->utils.i][data->utils.j] == '0')
-                mlx_put_image_to_window(data->mlx, data->win, data->textures->ground.img , data->utils.j * 64, data->utils.i * 64);
-            else if (data->map[data->utils.i][data->utils.j] == 'E')
-                mlx_put_image_to_window(data->mlx, data->win, data->textures->exit[0].img , data->utils.j * 64, data->utils.i * 64);
-            else if (data->map[data->utils.i][data->utils.j] == 'P')
-            {
-                data->player.p_pos.x = data->utils.j;
-                data->player.p_pos.y = data->utils.i;
-            }
-            else if (data->map[data->utils.i][data->utils.j] == 'C')
-            {
-                mlx_put_image_to_window(data->mlx, data->win, data->textures->collec[data->utils.k].img , data->utils.j * 64, data->utils.i * 64);
-                data->utils.k++;
-                if (data->utils.k == 7)
-                    data->utils.k = 0;
-                data->utils.countC++;
-            }
-            else if (data->map[data->utils.i][data->utils.j] == 'Z')
-            {
-                data->player.enemiespos.x = data->utils.j;
-                data->player.enemiespos.y = data->utils.i;
-                mlx_put_image_to_window(data->mlx, data->win, data->textures->ennemies[0].img , data->utils.j * 64, data->utils.i * 64);
-            }
-            data->utils.j++;
-        }
-        data->utils.i++;
-    }
-    startplayeranim(data);
-    startenemiesanim(data);
-}
 
 void    leave(t_data *data)
 {
     mlx_destroy_display(data->mlx);
     mlx_destroy_window(data->mlx, data->win);
     exit(0);
+}
+
+void    endgame(t_data *data)
+{
+    init_destpos(data);
+    if(data->map[data->player.destpos.y][data->player.destpos.x] == 'E')
+        leave(data);
 }

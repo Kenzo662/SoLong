@@ -53,3 +53,65 @@ void    swap(t_img bg, t_img *c, int i, int j)
         + (j * (c->bpp / 8)) + 2];
 }
 
+void    printmap(t_data *data)
+{
+    while (data->utils.i < data->axes.y)
+    {
+        data->utils.j = 0;
+        while(data->utils.j < data->axes.x)
+        {
+            if (data->map[data->utils.i][data->utils.j] == '1')
+                mlx_put_image_to_window(data->mlx, data->win , data->textures->wall.img , data->utils.j * 64, data->utils.i * 64);
+            else if (data->map[data->utils.i][data->utils.j] == '0')
+                mlx_put_image_to_window(data->mlx, data->win, data->textures->ground.img , data->utils.j * 64, data->utils.i * 64);
+            else if (data->map[data->utils.i][data->utils.j] == 'E')
+            {
+                data->player.exitpos.x = data->utils.j;
+                data->player.exitpos.y = data->utils.i;
+                mlx_put_image_to_window(data->mlx, data->win, data->textures->exit[0].img , data->utils.j * 64, data->utils.i * 64);
+            }    
+            else if (data->map[data->utils.i][data->utils.j] == 'P')
+            {
+                data->player.p_pos.x = data->utils.j;
+                data->player.p_pos.y = data->utils.i;
+            }
+            else if (data->map[data->utils.i][data->utils.j] == 'C')
+            {
+                mlx_put_image_to_window(data->mlx, data->win, data->textures->collec[data->utils.k].img , data->utils.j * 64, data->utils.i * 64);
+                data->utils.k++;
+                if (data->utils.k == 7)
+                    data->utils.k = 0;
+                data->utils.countC++;
+            }
+            else if (data->map[data->utils.i][data->utils.j] == 'Z')
+            {
+                data->player.enemiespos.x = data->utils.j;
+                data->player.enemiespos.y = data->utils.i;
+                mlx_put_image_to_window(data->mlx, data->win, data->textures->ennemies[0].img , data->utils.j * 64, data->utils.i * 64);
+            }
+            data->utils.j++;
+        }
+        data->utils.i++;
+    }
+    startplayeranim(data);
+}
+
+void    printchar(t_data *data, void *img)
+{
+    int i;
+    int j;
+    
+    i = 0;
+    j = 0;
+    while (i < data->axes.y)
+    {
+        j = 0;
+        while(j < data->axes.x)
+        {
+            if (data->map[i][j] == 'Z')
+                mlx_put_image_to_window(data->mlx, data->win, img, j * 64, i * 64);
+            j++;
+        }
+        i++; 
+    }
+}
