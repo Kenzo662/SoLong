@@ -40,10 +40,10 @@ void    init_destpos(t_data *data)
 
 void    init_startenemies(t_data *data)
 {
-    data->textures->buu_start = (t_img *)malloc(sizeof(t_img) * 8);
+    data->textures->buu_start = (t_img *)malloc(sizeof(t_img) * 15);
     int i = 0;
     char *path;
-    while(i < 8)
+    while(i < 15)
     {
         path = change_path("./Sprites/start/StartB", i);
         data->textures->buu_start[i] = transparance(data->mlx, data->textures->ground, path);

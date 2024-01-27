@@ -26,9 +26,9 @@ void    startplayeranim(t_data *data)
 
 int    startenemiesanim(t_data *data)
 {
-	while(data->utils.l < 8)
+	while(data->utils.l < 15)
 	{
-		while (data->utils.loop < 350)
+		while (data->utils.loop < 400)
 		{
 			data->utils.loop++;
 			return(1);
@@ -78,4 +78,9 @@ void	attack_anim(t_data *data)
 		mlx_put_image_to_window(data->mlx, data->win, data->textures->ground.img, data->player.destpos.x * 64, data->player.destpos.y * 64);
 		data->map[data->player.destpos.y][data->player.destpos.x] = '0';
 	}
+}
+
+void	enemies_attack_anim(t_data *data)
+{
+	
 }

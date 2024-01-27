@@ -77,6 +77,7 @@ typedef struct s_textures
     t_img   *player_attack;
     t_img   *buu_start;
     t_img   *buu_death;
+    t_img   *enemiesattack;
 
 }           t_textures;
 
@@ -88,6 +89,7 @@ typedef struct s_player
     int     side;
     int     attack_side;
     t_axes  enemiespos;
+    t_axes  e_destpos;
 }       t_player;
 
 typedef struct  s_data 
@@ -140,5 +142,6 @@ void    leave(t_data *data);
 void    printchar(t_data *data, void *img);
 void    endgame(t_data *data);
 void    init_exit(t_data *data);
+void    init_enemiesattack(t_data *data);
 
 #endif

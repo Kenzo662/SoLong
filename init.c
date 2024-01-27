@@ -44,6 +44,7 @@ void    init_data(t_data *data)
     init_startenemies(data);
     init_enemiesdeath(data);
     init_exit(data);
+    init_enemiesattack(data);
 }
 
 void    init_textures(t_data *data)
