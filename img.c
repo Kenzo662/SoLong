@@ -115,3 +115,35 @@ void    printchar(t_data *data, void *img)
         i++; 
     }
 }
+
+void    printattackanim(t_data *data, void *img)
+{
+    int i;
+    int j;
+    int side;
+    
+    i = 0;
+    j = 0;
+    side = 0;
+    while (side < 4)
+    {
+        init_enemiesdestpos(data, side);
+        while (i < data->axes.y)
+        {
+            j = 0;
+            while(j < data->axes.x)
+            {
+                if (data->map[i][j] == 'Z')
+                {
+                    if(data->map[data->player.e_destpos.y][data->player.e_destpos.x] == '0')
+                        mlx_put_image_to_window(data->mlx, data->win, img, data->player.e_destpos.x * 64, data->player.e_destpos.y * 64);
+                }
+                j++;
+            }
+            i++; 
+        }
+        i = 0;
+        j = 0;
+        side++;
+    }
+}

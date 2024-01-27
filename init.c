@@ -36,6 +36,8 @@ void    init_data(t_data *data)
     data->utils.l = 0;
     data->player.exitpos.x = 0;
     data->player.exitpos.y = 0;
+    data->player.e_destpos.x = 0;
+    data->player.e_destpos.y = 0;
     init_textures(data);
     init_collec(data);
     init_player(data);

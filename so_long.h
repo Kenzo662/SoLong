@@ -42,6 +42,7 @@ typedef struct s_utils
     int     j;
     int     k;
     int     l;
+    int     loopcount;
     int     whichside;
     int     collect;
     int     loop;
@@ -143,5 +144,8 @@ void    printchar(t_data *data, void *img);
 void    endgame(t_data *data);
 void    init_exit(t_data *data);
 void    init_enemiesattack(t_data *data);
+void    init_enemiesdestpos(t_data *data, int side);
+void    printattackanim(t_data *data, void *img);
+void	enemies_attack_anim(t_data *data);
 
 #endif

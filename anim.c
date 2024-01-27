@@ -37,6 +37,7 @@ int    startenemiesanim(t_data *data)
 		data->utils.l++;
 		data->utils.loop = 0;
 	}
+	enemies_attack_anim(data);
 	return(0);
 }
 
@@ -82,5 +83,18 @@ void	attack_anim(t_data *data)
 
 void	enemies_attack_anim(t_data *data)
 {
-	
+	int side = 0;
+	while(data->utils.loopcount < 2)
+	{
+		while (data->utils.loop < 8000)
+		{
+			data->utils.loop++;
+			return(1);
+		}	
+		printattackanim(data, data->textures->enemiesattack[data->utils.loopcount + 2].img);
+		data->utils.loopcount++;
+		data->utils.loop = 0;
+	}
+	data->utils.loopcount = 0;
+	return(0);
 }
