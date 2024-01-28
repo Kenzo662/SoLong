@@ -142,8 +142,8 @@ void    printattackanim(t_data *data, void *img)
                         printf("loopcount = %d\n", data->utils.loopcount);
                         if(data->utils.loopcount == 0)
                         {
-                           /*  if((data->player.destpos.x == data->player.e_destpos.x) && (data->player.destpos.y == data->player.e_destpos.y))
-                                leave(data); */
+                            if((data->player.p_pos.x == data->player.e_destpos.x) && (data->player.p_pos.y == data->player.e_destpos.y))
+                                leave(data);
                         }
                         
                     }
