@@ -38,8 +38,8 @@ int main(int ac, char **av)
 
 void    leave(t_data *data)
 {
-    mlx_destroy_display(data->mlx);
     mlx_destroy_window(data->mlx, data->win);
+    mlx_destroy_display(data->mlx);
     exit(0);
 }
 

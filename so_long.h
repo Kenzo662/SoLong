@@ -43,9 +43,11 @@ typedef struct s_utils
     int     k;
     int     l;
     int     loopcount;
+    int     loopcount1;
     int     whichside;
     int     collect;
     int     loop;
+    int     loop1;
 }           t_utils;
 
 typedef struct s_axes
@@ -147,5 +149,7 @@ void    init_enemiesattack(t_data *data);
 void    init_enemiesdestpos(t_data *data, int side);
 void    printattackanim(t_data *data, void *img);
 void	enemies_attack_anim(t_data *data);
+void    init_enemiespos(t_data *data);
+void	enemies_anim(t_data *data);
 
 #endif

@@ -2,10 +2,10 @@
 
 void    init_enemiesattack(t_data *data)
 {
-    data->textures->enemiesattack = (t_img *)malloc(sizeof(t_img) * 4);
+    data->textures->enemiesattack = (t_img *)malloc(sizeof(t_img) * 8);
     int i = 0;
     char *path;
-    while(i < 4)
+    while(i < 8)
     {
         path = change_path("./Sprites/attack/attackB", i);
         data->textures->enemiesattack[i] = transparance(data->mlx, data->textures->ground, path);
@@ -36,4 +36,10 @@ void    init_enemiesdestpos(t_data *data, int side)
         data->player.e_destpos.x = data->player.enemiespos.x - 1;
         data->player.e_destpos.y = data->player.enemiespos.y;
     }
+}
+
+void    init_enemiespos(t_data *data)
+{
+    data->player.enemiespos.x = data->utils.j;
+    data->player.enemiespos.y = data->utils.i;
 }

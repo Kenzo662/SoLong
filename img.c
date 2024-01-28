@@ -85,8 +85,7 @@ void    printmap(t_data *data)
             }
             else if (data->map[data->utils.i][data->utils.j] == 'Z')
             {
-                data->player.enemiespos.x = data->utils.j;
-                data->player.enemiespos.y = data->utils.i;
+                init_enemiespos(data);
                 mlx_put_image_to_window(data->mlx, data->win, data->textures->ennemies[0].img , data->utils.j * 64, data->utils.i * 64);
             }
             data->utils.j++;
@@ -127,7 +126,6 @@ void    printattackanim(t_data *data, void *img)
     side = 0;
     while (side < 4)
     {
-        init_enemiesdestpos(data, side);
         while (i < data->axes.y)
         {
             j = 0;
@@ -135,8 +133,20 @@ void    printattackanim(t_data *data, void *img)
             {
                 if (data->map[i][j] == 'Z')
                 {
+                    data->player.enemiespos.x =  j;
+                    data->player.enemiespos.y =  i;
+                    init_enemiesdestpos(data, side);
                     if(data->map[data->player.e_destpos.y][data->player.e_destpos.x] == '0')
+                    {
                         mlx_put_image_to_window(data->mlx, data->win, img, data->player.e_destpos.x * 64, data->player.e_destpos.y * 64);
+                        printf("loopcount = %d\n", data->utils.loopcount);
+                        if(data->utils.loopcount == 0)
+                        {
+                            if((data->player.destpos.x == data->player.e_destpos.x) && (data->player.destpos.y == data->player.e_destpos.y))
+                                leave(data);
+                        }
+                        
+                    }
                 }
                 j++;
             }

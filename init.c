@@ -33,19 +33,22 @@ void    init_data(t_data *data)
     data->utils.whichside = 0;
     data->utils.collect = 0;
     data->utils.loop = 0;
+    data->utils.loop1 = 0;
     data->utils.l = 0;
     data->player.exitpos.x = 0;
     data->player.exitpos.y = 0;
     data->player.e_destpos.x = 0;
     data->player.e_destpos.y = 0;
+    data->utils.loopcount = 0;
+    data->utils.loopcount1 = 0;
     init_textures(data);
     init_collec(data);
     init_player(data);
     init_start(data);
     init_attack(data);
     init_startenemies(data);
-    init_enemiesdeath(data);
     init_exit(data);
+    init_enemiesdeath(data);
     init_enemiesattack(data);
 }
 
