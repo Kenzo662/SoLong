@@ -3,6 +3,7 @@
 int    walkable(t_data *data, t_axes pos)
 {
 
+	init_destpos(data);
     if (data->map[pos.y][pos.x] == '1' || (data->map[pos.y][pos.x] == 'Z') || data->map[pos.y][pos.x] == 'E')
 	{
 		return(0);

@@ -38,6 +38,8 @@ void    moveup(t_data *data)
         mlx_put_image_to_window(data->mlx, data->win, data->textures->exit[1].img, data->player.exitpos.x * 64, data->player.exitpos.y * 64);
         endgame(data);
     }
+    if (find_enemies_destpos(data) == 1 && (data->utils.loopcount == 1))
+        return;
     moves(data);
 }
 
@@ -58,6 +60,8 @@ void    movedown(t_data *data)
         mlx_put_image_to_window(data->mlx, data->win, data->textures->exit[1].img, data->player.exitpos.x * 64, data->player.exitpos.y * 64);
         endgame(data);
     }
+    if (find_enemies_destpos(data) == 1 && (data->utils.loopcount == 1))
+        return;
     moves(data);
 }
 
@@ -79,6 +83,8 @@ void    moveleft(t_data *data)
         mlx_put_image_to_window(data->mlx, data->win, data->textures->exit[1].img, data->player.exitpos.x * 64, data->player.exitpos.y * 64);
         endgame(data);
     }
+    if (find_enemies_destpos(data) == 1 && (data->utils.loopcount == 1))
+        return;
     moves(data);
 }
 
@@ -100,6 +106,44 @@ void    moveright(t_data *data)
         mlx_put_image_to_window(data->mlx, data->win, data->textures->exit[1].img, data->player.exitpos.x * 64, data->player.exitpos.y * 64);
         endgame(data);
     }
+    if (find_enemies_destpos(data) == 1 && (data->utils.loopcount == 1))
+        return;
     moves(data);
 }
 
+int    find_enemies_destpos(t_data *data)
+{
+    int i;
+    int j;
+    int side;
+    
+    i = 0;
+    j = 0;
+    side = 0;
+    while (side < 4)
+    {
+        while (i < data->axes.y)
+        {
+            j = 0;
+            while(j < data->axes.x)
+            {
+                if (data->map[i][j] == 'Z')
+                {
+                    data->player.enemiespos.x = j;
+                    data->player.enemiespos.y = i;
+                    init_destpos(data);
+                    init_enemiesdestpos(data, side);
+                    if ((data->player.e_destpos.x == data->player.destpos.x) && (data->player.e_destpos.y == data->player.destpos.y))
+                        return(1);
+
+                }
+                j++;
+            }
+            i++; 
+        }
+        side++;
+        i = 0;
+        j = 0;
+    }
+    return (0);
+}

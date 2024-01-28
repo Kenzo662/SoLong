@@ -86,7 +86,7 @@ void	enemies_attack_anim(t_data *data)
 {
 	while(data->utils.loopcount < 2)
 	{
-		while (data->utils.loop < 3600)
+		while (data->utils.loop < 5400)
 		{
 			data->utils.loop++;
 			return;
@@ -102,7 +102,7 @@ void	enemies_anim(t_data *data)
 {
 	while(data->utils.loopcount1 < 6)
 	{
-		while (data->utils.loop1 < 600)
+		while (data->utils.loop1 < 900)
 		{
 			data->utils.loop1++;
 			return;

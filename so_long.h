@@ -151,5 +151,6 @@ void    printattackanim(t_data *data, void *img);
 void	enemies_attack_anim(t_data *data);
 void    init_enemiespos(t_data *data);
 void	enemies_anim(t_data *data);
+int    find_enemies_destpos(t_data *data);
 
 #endif
