@@ -139,7 +139,6 @@ void    printattackanim(t_data *data, void *img)
                     if(data->map[data->player.e_destpos.y][data->player.e_destpos.x] == '0')
                     {
                         mlx_put_image_to_window(data->mlx, data->win, img, data->player.e_destpos.x * 64, data->player.e_destpos.y * 64);
-                        printf("loopcount = %d\n", data->utils.loopcount);
                         if(data->utils.loopcount == 0)
                         {
                             if((data->player.p_pos.x == data->player.e_destpos.x) && (data->player.p_pos.y == data->player.e_destpos.y))
