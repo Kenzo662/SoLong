@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: klopez <klopez@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kenz <kenz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:14:04 by klopez            #+#    #+#             */
-/*   Updated: 2024/02/04 15:43:28 by klopez           ###   ########.fr       */
+/*   Updated: 2024/02/05 18:58:59 by kenz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,13 @@ void	init_data2(t_data *data)
 	data->utils.loopcount = 0;
 	data->utils.loopcount1 = 0;
 	data->utils.side = -1;
+	data->utils.i_attack = 0;
+	data->utils.i_collec = 0;
+	data->utils.i_death = 0;
+	data->utils.i_enemiesattack = 0;
+	data->utils.i_player = 0;
+	data->utils.i_starte = 0;
+	data->utils.i_startp = 0;
 	init_textures(data);
 	init_collec(data);
 	init_player(data);
@@ -76,34 +83,30 @@ void	init_textures(t_data *data)
 
 void	init_collec(t_data *data)
 {
-	int		i;
 	char	*path;
 
-	i = 0;
 	data->textures->collec = (t_img *)malloc(sizeof(t_img) * 7);
-	while (i < 7)
+	while (data->utils.i_collec < 7)
 	{
-		path = change_path("./Sprites/items/Crystal", i);
-		data->textures->collec[i] = transparance(data->mlx,
+		path = change_path("./Sprites/items/Crystal", data->utils.i_collec);
+		data->textures->collec[data->utils.i_collec] = transparance(data->mlx,
 				data->textures->ground, path);
-		i++;
+		data->utils.i_collec++;
 		free(path);
 	}
 }
 
 void	init_player(t_data *data)
 {
-	int		i;
 	char	*path;
 
 	data->textures->player = (t_img *)malloc(sizeof(t_img) * 12);
-	i = 0;
-	while (i < 12)
+	while (data->utils.i_player < 12)
 	{
-		path = change_path("./Sprites/skins/Broly", i);
-		data->textures->player[i] = transparance(data->mlx,
+		path = change_path("./Sprites/skins/Broly", data->utils.i_player);
+		data->textures->player[data->utils.i_player] = transparance(data->mlx,
 				data->textures->ground, path);
-		i++;
+		data->utils.i_player++;
 		free(path);
 	}
 }

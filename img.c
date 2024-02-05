@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   img.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: klopez <klopez@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kenz <kenz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:04:15 by klopez            #+#    #+#             */
-/*   Updated: 2024/02/04 15:45:56 by klopez           ###   ########.fr       */
+/*   Updated: 2024/02/05 19:16:27 by kenz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,13 +101,13 @@ void	printattackanim(t_data *data, void *img)
 		{
 			j = -1;
 			while (++j < data->axes.x)
-				attackanim(data, i, j, img);
+				sideattackanim(data, i, j, img);
 		}
 		i = -1;
 	}
 }
 
-void	attackanim(t_data *data, int i, int j, void *img)
+void	sideattackanim(t_data *data, int i, int j, void *img)
 {
 	if (data->map[i][j] == 'Z')
 	{

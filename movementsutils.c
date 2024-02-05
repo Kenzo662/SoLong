@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movementsutils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: klopez <klopez@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kenz <kenz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 15:33:52 by klopez            #+#    #+#             */
-/*   Updated: 2024/02/04 15:37:23 by klopez           ###   ########.fr       */
+/*   Updated: 2024/02/05 18:15:35 by kenz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ char	*change_path(char *textures, int i)
 
 int	keyboard(int keycode, t_data *data)
 {
-	if (keycode == W)
+	if (keycode == W || keycode == UP)
 		moveup(data);
-	else if (keycode == A)
+	else if (keycode == A || keycode == LEFT)
 		moveleft(data);
-	else if (keycode == D)
+	else if (keycode == D || keycode == RIGHT)
 		moveright(data);
-	else if (keycode == S)
+	else if (keycode == S || keycode == DOWN)
 		movedown(data);
 	else if (keycode == E)
 		attack_anim(data);

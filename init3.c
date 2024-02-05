@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init3.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: klopez <klopez@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kenz <kenz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 15:25:28 by klopez            #+#    #+#             */
-/*   Updated: 2024/02/04 15:25:29 by klopez           ###   ########.fr       */
+/*   Updated: 2024/02/05 18:58:21 by kenz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,16 @@
 
 void	init_enemiesattack(t_data *data)
 {
-	int		i;
 	char	*path;
 
 	data->textures->enemiesattack = (t_img *)malloc(sizeof(t_img) * 8);
-	i = 0;
-	while (i < 8)
+	while (data->utils.i_enemiesattack < 8)
 	{
-		path = change_path("./Sprites/attack/attackB", i);
-		data->textures->enemiesattack[i] = transparance(data->mlx,
-				data->textures->ground, path);
-		i++;
+		path = change_path("./Sprites/attack/attackB",
+				data->utils.i_enemiesattack);
+		data->textures->enemiesattack[data->utils.i_enemiesattack]
+			= transparance(data->mlx, data->textures->ground, path);
+		data->utils.i_enemiesattack++;
 		free(path);
 	}
 }
@@ -61,17 +60,16 @@ void	init_enemiespos(t_data *data)
 
 void	init_start(t_data *data)
 {
-	int		i;
 	char	*path;
 
 	data->textures->player_start = (t_img *)malloc(sizeof(t_img) * 6);
-	i = 0;
-	while (i < 6)
+	while (data->utils.i_startp < 6)
 	{
-		path = change_path("./Sprites/start/Start", i);
-		data->textures->player_start[i] = transparance(data->mlx,
-				data->textures->ground, path);
-		i++;
+		path = change_path("./Sprites/start/Start",
+				data->utils.i_startp);
+		data->textures->player_start[data->utils.i_startp]
+			= transparance(data->mlx, data->textures->ground, path);
+		data->utils.i_startp++;
 		free(path);
 	}
 }

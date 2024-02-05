@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: klopez <klopez@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kenz <kenz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 15:25:21 by klopez            #+#    #+#             */
-/*   Updated: 2024/02/04 15:29:39 by klopez           ###   ########.fr       */
+/*   Updated: 2024/02/05 18:56:43 by kenz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,15 @@
 
 void	init_attack(t_data *data)
 {
-	int		i;
 	char	*path;
 
-	i = 0;
 	data->textures->player_attack = (t_img *)malloc(sizeof(t_img) * 16);
-	while (i < 16)
+	while (data->utils.i_attack < 16)
 	{
-		path = change_path("./Sprites/attack/attack", i);
-		data->textures->player_attack[i] = transparance(data->mlx,
-				data->textures->ground, path);
-		i++;
+		path = change_path("./Sprites/attack/attack", data->utils.i_attack);
+		data->textures->player_attack[data->utils.i_attack]
+			= transparance(data->mlx, data->textures->ground, path);
+		data->utils.i_attack++;
 		free(path);
 	}
 }
@@ -55,34 +53,30 @@ void	init_destpos(t_data *data)
 
 void	init_startenemies(t_data *data)
 {
-	int		i;
 	char	*path;
 
-	i = 0;
 	data->textures->buu_start = (t_img *)malloc(sizeof(t_img) * 15);
-	while (i < 15)
+	while (data->utils.i_starte < 15)
 	{
-		path = change_path("./Sprites/start/StartB", i);
-		data->textures->buu_start[i] = transparance(data->mlx,
-				data->textures->ground, path);
-		i++;
+		path = change_path("./Sprites/start/StartB", data->utils.i_starte);
+		data->textures->buu_start[data->utils.i_starte]
+			= transparance(data->mlx, data->textures->ground, path);
+		data->utils.i_starte++;
 		free(path);
 	}
 }
 
 void	init_enemiesdeath(t_data *data)
 {
-	int		i;
 	char	*path;
 
-	i = 0;
 	data->textures->buu_death = (t_img *)malloc(sizeof(t_img) * 10);
-	while (i < 10)
+	while (data->utils.i_death < 10)
 	{
-		path = change_path("./Sprites/BuuDeath/Death", i);
-		data->textures->buu_death[i] = transparance(data->mlx,
-				data->textures->ground, path);
-		i++;
+		path = change_path("./Sprites/BuuDeath/Death", data->utils.i_death);
+		data->textures->buu_death[data->utils.i_death]
+			= transparance(data->mlx, data->textures->ground, path);
+		data->utils.i_death++;
 		free(path);
 	}
 }
