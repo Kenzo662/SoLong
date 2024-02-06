@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kenz <kenz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: klopez <klopez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 17:38:57 by klopez            #+#    #+#             */
-/*   Updated: 2024/02/05 19:21:37 by kenz             ###   ########.fr       */
+/*   Updated: 2024/02/06 04:34:58 by klopez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,9 @@ int				find_enemies_destpos(t_data *data);
 void			attack_anim2(t_data *data, int j);
 void			printmapchar(t_data *data);
 void			sideattackanim(t_data *data, int i, int j, void *img);
-void			destoy_img(t_data *data, int imgnbr, void *img);
+void			destroy_img(t_data *data);
+void			destroy_img2(t_data *data);
+void			destroy_img3(t_data *data);
+void			destroy_img4(t_data *data);
 
 #endif

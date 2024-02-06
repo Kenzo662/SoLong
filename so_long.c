@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kenz <kenz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: klopez <klopez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 17:39:01 by klopez            #+#    #+#             */
-/*   Updated: 2024/02/05 20:03:02 by kenz             ###   ########.fr       */
+/*   Updated: 2024/02/06 04:41:27 by klopez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	main(int ac, char **av)
 
 int	leave(t_data *data)
 {
+	destroy_img(data);
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
 	exit(0);
@@ -58,17 +59,3 @@ void	init_all_e_pos(t_data *data, int side, int i, int j)
 	init_enemiesdestpos(data, side);
 }
 
-void	destoy_img(t_data *data, int imgnbr, void *img)
-{
-	mlx_destroy_image(data->mlx, data->textures->ground.img);
-	mlx_destroy_image(data->mlx, data->textures->exit[0].img);
-	mlx_destroy_image(data->mlx, data->textures->exit[1].img);
-	int i;
-
-	i = 0;
-	while (i < imgnbr)
-	{
-		//mlx_destroy_image(data->mlx, data->textures->img[i].img);
-		i++;
-	}
-}

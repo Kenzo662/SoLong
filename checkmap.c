@@ -6,7 +6,7 @@
 /*   By: klopez <klopez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 19:27:49 by klopez            #+#    #+#             */
-/*   Updated: 2024/02/04 15:44:58 by klopez           ###   ########.fr       */
+/*   Updated: 2024/02/06 05:31:04 by klopez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	malloctab(t_data *data, char *path)
 	t_utils	utils;
 	int		fd;
 
-	utils.i = 0;
 	utils.k = 0;
 	fd = open(path, O_RDONLY);
 	utils.str = get_next_line(fd);
