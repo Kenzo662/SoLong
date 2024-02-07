@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   destroy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: klopez <klopez@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kenz <kenz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 04:20:02 by klopez            #+#    #+#             */
-/*   Updated: 2024/02/06 05:25:26 by klopez           ###   ########.fr       */
+/*   Updated: 2024/02/06 23:49:27 by kenz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,12 +108,26 @@ void	destroy_img4(t_data *data)
 	mlx_destroy_image(data->mlx, data->textures->player_start[3].img);
 	mlx_destroy_image(data->mlx, data->textures->player_start[4].img);
 	mlx_destroy_image(data->mlx, data->textures->player_start[5].img);
-    free(data->textures);
     int i = 0;
-    while(data->map[i] != NULL)
+    while(i < data->axes.y)
     {
         free(data->map[i]);
         i++;
     }
 	free(data->map);
+	free_textures(data);
+}
+
+void	free_textures(t_data *data)
+{
+	free(data->textures->ennemies);
+	free(data->textures->collec);
+	free(data->textures->exit);
+	free(data->textures->player_start);
+	free(data->textures->enemiesattack);
+	free(data->textures->player_attack);
+	free(data->textures->buu_death);
+	free(data->textures->buu_start);
+	free(data->textures->player);
+    free(data->textures);
 }

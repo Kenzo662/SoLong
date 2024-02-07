@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkmap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: klopez <klopez@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kenz <kenz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 19:27:49 by klopez            #+#    #+#             */
-/*   Updated: 2024/02/06 05:31:04 by klopez           ###   ########.fr       */
+/*   Updated: 2024/02/07 00:27:55 by kenz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	checkmap(t_data *data, int fd)
 	utils.bytes = 1;
 	if (checkone(data->map[utils.line]) == 1)
 	{
-		printf("La map n'est pas valide0");
+		ft_printf("The map is invalid! Please, send a new map!");
 		exit(0);
 	}
 	checkchar(data, fd, &utils);
@@ -65,10 +65,10 @@ void	checkmap(t_data *data, int fd)
 	data->axes.y = utils.line + 1;
 	if (checkone(data->map[utils.line]) == 0 && utils.i == utils.j + 1
 		&& utils.counte == 1 && utils.countp == 1)
-		printf("La map est valide");
+		return;
 	else
 	{
-		perror("Map Invalid");
+		ft_printf("The map is invalid! Please, send a new map!");
 		exit(0);
 	}
 }
@@ -85,13 +85,13 @@ void	checkchar(t_data *data, int fd, t_utils *utils)
 		utils->j = 0;
 		if (data->map[utils->line][0] != '1')
 		{
-			perror("La map n'est pas fermer1\n");
+			ft_printf("The map is invalid! Please, send a new map!");
 			exit(0);
 		}
 		checkwhile(data, utils);
 		if (data->map[utils->line][utils->j - 2] != '1' || utils->i != utils->j)
 		{
-			perror("La map n'est pas fermer20\n");
+			ft_printf("The map is invalid! Please, send a new map!");
 			exit(0);
 		}
 		data->map[++utils->line] = get_next_line(fd);
@@ -110,8 +110,7 @@ void	checkwhile(t_data *data, t_utils *utils)
 			&& data->map[utils->line][utils->j] != '\n'
 			&& data->map[utils->line][utils->j] != 'Z')
 		{
-			printf("c = %c\n", data->map[utils->line][utils->j]);
-			perror("La map n'est pas valide1");
+			ft_printf("The map is invalid! Please, send a new map!");
 			exit(0);
 		}
 		if (data->map[utils->line][utils->j] == 'E')

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: klopez <klopez@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kenz <kenz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 17:39:01 by klopez            #+#    #+#             */
-/*   Updated: 2024/02/06 04:41:27 by klopez           ###   ########.fr       */
+/*   Updated: 2024/02/07 00:18:25 by kenz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int ac, char **av)
 	data.map = NULL;
 	if (ac != 2)
 	{
-		path = "./map.ber";
+		path = "map/map.ber";
 	}
 	else
 		path = av[1];
@@ -41,6 +41,7 @@ int	leave(t_data *data)
 	destroy_img(data);
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
+	free(data->mlx);
 	exit(0);
 }
 
