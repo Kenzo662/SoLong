@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kenz <kenz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: klopez <klopez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:14:04 by klopez            #+#    #+#             */
-/*   Updated: 2024/02/05 18:58:59 by kenz             ###   ########.fr       */
+/*   Updated: 2024/02/08 05:20:51 by klopez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	init_data2(t_data *data)
 	data->utils.i_player = 0;
 	data->utils.i_starte = 0;
 	data->utils.i_startp = 0;
+	data->utils.e_way = 0;
+	data->utils.c_way = 0;
 	init_textures(data);
 	init_collec(data);
 	init_player(data);

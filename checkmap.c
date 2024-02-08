@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkmap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kenz <kenz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: klopez <klopez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 19:27:49 by klopez            #+#    #+#             */
-/*   Updated: 2024/02/07 00:27:55 by kenz             ###   ########.fr       */
+/*   Updated: 2024/02/08 05:37:39 by klopez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	checkmap(t_data *data, int fd)
 {
 	t_utils	utils;
 
-	utils.counte = 0;
+	data->utils.counte = 0;
 	utils.countp = 0;
 	utils.line = 0;
 	data->map[utils.line] = get_next_line(fd);
@@ -64,7 +64,7 @@ void	checkmap(t_data *data, int fd)
 	data->axes.x = ft_strlen(data->map[utils.line]);
 	data->axes.y = utils.line + 1;
 	if (checkone(data->map[utils.line]) == 0 && utils.i == utils.j + 1
-		&& utils.counte == 1 && utils.countp == 1)
+		&& data->utils.counte == 1 && utils.countp == 1)
 		return;
 	else
 	{
@@ -114,9 +114,13 @@ void	checkwhile(t_data *data, t_utils *utils)
 			exit(0);
 		}
 		if (data->map[utils->line][utils->j] == 'E')
-			utils->counte++;
+			data->utils.counte++;
 		if (data->map[utils->line][utils->j] == 'P')
+		{
+			data->player.p_pos.x = data->utils.j;
+			data->player.p_pos.y = data->utils.line;
 			utils->countp++;
+		}
 		utils->j++;
 	}
 }

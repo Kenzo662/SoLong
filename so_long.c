@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kenz <kenz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: klopez <klopez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 17:39:01 by klopez            #+#    #+#             */
-/*   Updated: 2024/02/07 00:18:25 by kenz             ###   ########.fr       */
+/*   Updated: 2024/02/08 05:52:56 by klopez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,18 @@
 
 int	main(int ac, char **av)
 {
-	char	*path;
 	t_data	data;
 	int		fd;
 
 	data.map = NULL;
 	if (ac != 2)
 	{
-		path = "map/map.ber";
+		data.img.path = "map/map.ber";
 	}
 	else
-		path = av[1];
-	malloctab(&data, path);
-	fd = open(path, O_RDONLY);
+		data.img.path = av[1];
+	malloctab(&data, data.img.path);
+	fd = open(data.img.path, O_RDONLY);
 	checkmap(&data, fd);
 	init_data(&data);
 	printmap(&data);
