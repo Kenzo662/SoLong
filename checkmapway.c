@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checkmapway.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: klopez <klopez@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/11 19:38:28 by klopez            #+#    #+#             */
+/*   Updated: 2024/02/11 19:48:12 by klopez           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 void	dfs(t_data *data, t_axes pos, char **mapcheck)
@@ -63,4 +75,27 @@ t_axes	find_dir(t_axes pos, int dir)
 	else if (dir == 6)
 		pos.x++;
 	return (pos);
+}
+
+void	checkway(t_data *data)
+{
+	data->utils.mapcheck = mallocnewtab(data);
+	dfs(data, data->player.p_pos, data->utils.mapcheck);
+	if (data->utils.c_way != data->utils.countc
+		|| data->utils.e_way != data->utils.counte)
+	{
+		ft_printf("All collectibles or exit are not reachable!\n");
+		ft_printf("Please, send a valid map!\n");
+		freetabfull(data->map, data);
+		freetabfull(data->utils.mapcheck, data);
+		exit(0);
+	}
+}
+
+void	is_invalid(t_data *data, t_utils *utils)
+{
+	ft_printf("The map is invalid! Please, send a valid map!\n");
+	data->map[utils->line + 1] = NULL;
+	freetab(data->map);
+	exit(0);
 }

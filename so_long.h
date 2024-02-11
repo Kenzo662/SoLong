@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kenz <kenz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: klopez <klopez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 17:38:57 by klopez            #+#    #+#             */
-/*   Updated: 2024/02/11 04:53:52 by kenz             ###   ########.fr       */
+/*   Updated: 2024/02/11 18:45:56 by klopez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,11 +171,13 @@ void			destroy_img2(t_data *data);
 void			destroy_img3(t_data *data);
 void			destroy_img4(t_data *data);
 void			free_textures(t_data *data);
-void    		dfs(t_data *data, t_axes pos, char **mapcheck);
-char    		**mallocnewtab(t_data *data);
-t_axes  		find_dir(t_axes pos, int dir);
+void			dfs(t_data *data, t_axes pos, char **mapcheck);
+char			**mallocnewtab(t_data *data);
+t_axes			find_dir(t_axes pos, int dir);
 void			init_p_pos(t_data *data);
 void			freetabfull(char **tab, t_data *data);
-void    		freetab(char **tab);
+void			freetab(char **tab);
+void			checkway(t_data *data);
+void			is_invalid(t_data *data, t_utils *utils);
 
 #endif
