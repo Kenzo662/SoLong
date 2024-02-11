@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkmap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: klopez <klopez@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kenz <kenz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 19:27:49 by klopez            #+#    #+#             */
-/*   Updated: 2024/02/08 05:37:39 by klopez           ###   ########.fr       */
+/*   Updated: 2024/02/11 05:09:11 by kenz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	checkmap(t_data *data, int fd)
 {
 	t_utils	utils;
 
-	data->utils.counte = 0;
 	utils.countp = 0;
 	utils.line = 0;
 	data->map[utils.line] = get_next_line(fd);
@@ -57,6 +56,7 @@ void	checkmap(t_data *data, int fd)
 	if (checkone(data->map[utils.line]) == 1)
 	{
 		ft_printf("The map is invalid! Please, send a new map!");
+		freetab(data->map);
 		exit(0);
 	}
 	checkchar(data, fd, &utils);
@@ -65,16 +65,19 @@ void	checkmap(t_data *data, int fd)
 	data->axes.y = utils.line + 1;
 	if (checkone(data->map[utils.line]) == 0 && utils.i == utils.j + 1
 		&& data->utils.counte == 1 && utils.countp == 1)
-		return;
+		return ;
 	else
 	{
 		ft_printf("The map is invalid! Please, send a new map!");
+		freetab(data->map);
 		exit(0);
 	}
 }
 
 void	checkchar(t_data *data, int fd, t_utils *utils)
 {
+	data->utils.counte = 0;
+	data->utils.countc = 0;
 	utils->bytes = 1;
 	data->map[++utils->line] = get_next_line(fd);
 	while (utils->bytes == 1)
@@ -86,12 +89,14 @@ void	checkchar(t_data *data, int fd, t_utils *utils)
 		if (data->map[utils->line][0] != '1')
 		{
 			ft_printf("The map is invalid! Please, send a new map!");
+			freetab(data->map);
 			exit(0);
 		}
 		checkwhile(data, utils);
 		if (data->map[utils->line][utils->j - 2] != '1' || utils->i != utils->j)
 		{
 			ft_printf("The map is invalid! Please, send a new map!");
+			freetab(data->map);
 			exit(0);
 		}
 		data->map[++utils->line] = get_next_line(fd);
@@ -100,6 +105,8 @@ void	checkchar(t_data *data, int fd, t_utils *utils)
 
 void	checkwhile(t_data *data, t_utils *utils)
 {
+	data->utils.e_way = 0;
+	data->utils.c_way = 0;
 	while (data->map[utils->line][utils->j])
 	{
 		if (data->map[utils->line][utils->j] != '1'
@@ -111,16 +118,15 @@ void	checkwhile(t_data *data, t_utils *utils)
 			&& data->map[utils->line][utils->j] != 'Z')
 		{
 			ft_printf("The map is invalid! Please, send a new map!");
+			freetab(data->map);
 			exit(0);
 		}
 		if (data->map[utils->line][utils->j] == 'E')
 			data->utils.counte++;
 		if (data->map[utils->line][utils->j] == 'P')
-		{
-			data->player.p_pos.x = data->utils.j;
-			data->player.p_pos.y = data->utils.line;
 			utils->countp++;
-		}
+		if (data->map[utils->line][utils->j] == 'C')
+			data->utils.countc++;
 		utils->j++;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: klopez <klopez@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kenz <kenz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:14:04 by klopez            #+#    #+#             */
-/*   Updated: 2024/02/08 05:20:51 by klopez           ###   ########.fr       */
+/*   Updated: 2024/02/11 03:58:14 by kenz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	init_data(t_data *data)
 {
 	data->utils.k = 0;
-	data->utils.countc = 0;
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, data->axes.x * 64, data->axes.y * 64,
 			"so_long");
@@ -56,8 +55,6 @@ void	init_data2(t_data *data)
 	data->utils.i_player = 0;
 	data->utils.i_starte = 0;
 	data->utils.i_startp = 0;
-	data->utils.e_way = 0;
-	data->utils.c_way = 0;
 	init_textures(data);
 	init_collec(data);
 	init_player(data);

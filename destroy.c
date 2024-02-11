@@ -6,7 +6,7 @@
 /*   By: kenz <kenz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 04:20:02 by klopez            #+#    #+#             */
-/*   Updated: 2024/02/06 23:49:27 by kenz             ###   ########.fr       */
+/*   Updated: 2024/02/11 05:10:09 by kenz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,26 +108,7 @@ void	destroy_img4(t_data *data)
 	mlx_destroy_image(data->mlx, data->textures->player_start[3].img);
 	mlx_destroy_image(data->mlx, data->textures->player_start[4].img);
 	mlx_destroy_image(data->mlx, data->textures->player_start[5].img);
-    int i = 0;
-    while(i < data->axes.y)
-    {
-        free(data->map[i]);
-        i++;
-    }
-	free(data->map);
+	freetabfull(data->map, data);
+	freetabfull(data->utils.mapcheck, data);
 	free_textures(data);
-}
-
-void	free_textures(t_data *data)
-{
-	free(data->textures->ennemies);
-	free(data->textures->collec);
-	free(data->textures->exit);
-	free(data->textures->player_start);
-	free(data->textures->enemiesattack);
-	free(data->textures->player_attack);
-	free(data->textures->buu_death);
-	free(data->textures->buu_start);
-	free(data->textures->player);
-    free(data->textures);
 }

@@ -6,7 +6,7 @@
 /*   By: kenz <kenz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 15:25:28 by klopez            #+#    #+#             */
-/*   Updated: 2024/02/05 18:58:21 by kenz             ###   ########.fr       */
+/*   Updated: 2024/02/11 05:11:41 by kenz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,28 @@ void	init_start(t_data *data)
 			= transparance(data->mlx, data->textures->ground, path);
 		data->utils.i_startp++;
 		free(path);
+	}
+}
+
+void	init_p_pos(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (i < data->axes.y)
+	{
+		j = 0;
+		while (j < data->axes.x)
+		{
+			if (data->map[i][j] == 'P')
+			{
+				data->player.p_pos.x = j;
+				data->player.p_pos.y = i;
+			}
+			j++;
+		}
+		i++;
 	}
 }

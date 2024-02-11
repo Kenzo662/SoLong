@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: klopez <klopez@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kenz <kenz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 17:38:57 by klopez            #+#    #+#             */
-/*   Updated: 2024/02/08 05:33:18 by klopez           ###   ########.fr       */
+/*   Updated: 2024/02/11 04:53:52 by kenz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct s_utils
 	int			i_death;
 	int			c_way;
 	int			e_way;
+	char		**mapcheck;
 }				t_utils;
 
 typedef struct s_axes
@@ -170,8 +171,11 @@ void			destroy_img2(t_data *data);
 void			destroy_img3(t_data *data);
 void			destroy_img4(t_data *data);
 void			free_textures(t_data *data);
-void    		dfs(t_data *data, t_axes pos);
+void    		dfs(t_data *data, t_axes pos, char **mapcheck);
 char    		**mallocnewtab(t_data *data);
 t_axes  		find_dir(t_axes pos, int dir);
+void			init_p_pos(t_data *data);
+void			freetabfull(char **tab, t_data *data);
+void    		freetab(char **tab);
 
 #endif

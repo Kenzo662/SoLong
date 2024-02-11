@@ -6,7 +6,7 @@
 /*   By: kenz <kenz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:04:15 by klopez            #+#    #+#             */
-/*   Updated: 2024/02/05 19:16:27 by kenz             ###   ########.fr       */
+/*   Updated: 2024/02/11 03:57:14 by kenz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	printmapchar(t_data *data)
 		data->utils.k++;
 		if (data->utils.k == 7)
 			data->utils.k = 0;
-		data->utils.countc++;
 	}
 }
 

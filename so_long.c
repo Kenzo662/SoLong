@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: klopez <klopez@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kenz <kenz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 17:39:01 by klopez            #+#    #+#             */
-/*   Updated: 2024/02/08 05:52:56 by klopez           ###   ########.fr       */
+/*   Updated: 2024/02/11 04:57:22 by kenz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,17 @@ int	main(int ac, char **av)
 	malloctab(&data, data.img.path);
 	fd = open(data.img.path, O_RDONLY);
 	checkmap(&data, fd);
+	close(fd);
+	init_p_pos(&data);
+	printf("x = %d y = %d\n", data.player.p_pos.x, data.player.p_pos.y);
+	data.utils.mapcheck = mallocnewtab(&data);
+	dfs(&data, data.player.p_pos, data.utils.mapcheck);
+	if (data.utils.c_way != data.utils.countc
+		|| data.utils.e_way != data.utils.counte)
+	{
+		ft_printf("The way to the exit is wrong, please send a new map!");
+		exit(0);
+	}
 	init_data(&data);
 	printmap(&data);
 	mlx_loop_hook(data.mlx, startenemiesanim, &data);
@@ -58,4 +69,3 @@ void	init_all_e_pos(t_data *data, int side, int i, int j)
 	init_destpos(data);
 	init_enemiesdestpos(data, side);
 }
-
