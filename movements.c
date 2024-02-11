@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: klopez <klopez@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kenz <kenz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:06:37 by klopez            #+#    #+#             */
-/*   Updated: 2024/02/04 15:44:05 by klopez           ###   ########.fr       */
+/*   Updated: 2024/02/11 23:59:14 by kenz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	moveup(t_data *data)
 	data->player.attack_side = 8;
 	data->player.destpos.x = data->player.p_pos.x;
 	data->player.destpos.y = data->player.p_pos.y - 1;
-	data->utils.whichside = 1;
 	if (data->map[data->player.destpos.y][data->player.destpos.x] == 'C')
 	{
 		data->map[data->player.destpos.y][data->player.destpos.x] = '0';
@@ -42,6 +41,10 @@ void	moveup(t_data *data)
 	if (find_enemies_destpos(data) == 1 && (data->utils.loopcount == 1))
 		return ;
 	moves(data);
+	if ((data->map[data->player.destpos.y][data->player.destpos.x] != 'Z') &&
+	(data->map[data->player.destpos.y][data->player.destpos.x] != 'E') &&
+	(data->map[data->player.destpos.y][data->player.destpos.x] != '1'))
+		data->utils.movecount++;
 }
 
 void	movedown(t_data *data)
@@ -50,7 +53,6 @@ void	movedown(t_data *data)
 	data->player.attack_side = 0;
 	data->player.destpos.x = data->player.p_pos.x;
 	data->player.destpos.y = data->player.p_pos.y + 1;
-	data->utils.whichside = 0;
 	if (data->map[data->player.destpos.y][data->player.destpos.x] == 'C')
 	{
 		data->map[data->player.destpos.y][data->player.destpos.x] = '0';
@@ -66,6 +68,10 @@ void	movedown(t_data *data)
 	if (find_enemies_destpos(data) == 1 && (data->utils.loopcount == 1))
 		return ;
 	moves(data);
+	if ((data->map[data->player.destpos.y][data->player.destpos.x] != 'Z') &&
+	(data->map[data->player.destpos.y][data->player.destpos.x] != 'E') &&
+	(data->map[data->player.destpos.y][data->player.destpos.x] != '1'))
+		data->utils.movecount++;
 }
 
 void	moveleft(t_data *data)
@@ -74,7 +80,6 @@ void	moveleft(t_data *data)
 	data->player.attack_side = 12;
 	data->player.destpos.x = data->player.p_pos.x - 1;
 	data->player.destpos.y = data->player.p_pos.y;
-	data->utils.whichside = 3;
 	if (data->map[data->player.destpos.y][data->player.destpos.x] == 'C')
 	{
 		data->map[data->player.destpos.y][data->player.destpos.x] = '0';
@@ -90,6 +95,10 @@ void	moveleft(t_data *data)
 	if (find_enemies_destpos(data) == 1 && (data->utils.loopcount == 1))
 		return ;
 	moves(data);
+	if ((data->map[data->player.destpos.y][data->player.destpos.x] != 'Z') &&
+	(data->map[data->player.destpos.y][data->player.destpos.x] != 'E') &&
+	(data->map[data->player.destpos.y][data->player.destpos.x] != '1'))
+		data->utils.movecount++;
 }
 
 void	moveright(t_data *data)
@@ -98,7 +107,6 @@ void	moveright(t_data *data)
 	data->player.attack_side = 4;
 	data->player.destpos.x = data->player.p_pos.x + 1;
 	data->player.destpos.y = data->player.p_pos.y;
-	data->utils.whichside = 2;
 	if (data->map[data->player.destpos.y][data->player.destpos.x] == 'C')
 	{
 		data->map[data->player.destpos.y][data->player.destpos.x] = '0';
@@ -114,4 +122,8 @@ void	moveright(t_data *data)
 	if (find_enemies_destpos(data) == 1 && (data->utils.loopcount == 1))
 		return ;
 	moves(data);
+	if ((data->map[data->player.destpos.y][data->player.destpos.x] != 'Z') &&
+	(data->map[data->player.destpos.y][data->player.destpos.x] != 'E') &&
+	(data->map[data->player.destpos.y][data->player.destpos.x] != '1'))
+		data->utils.movecount++;
 }

@@ -6,7 +6,7 @@
 /*   By: kenz <kenz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:14:04 by klopez            #+#    #+#             */
-/*   Updated: 2024/02/11 03:58:14 by kenz             ###   ########.fr       */
+/*   Updated: 2024/02/12 00:00:08 by kenz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	init_data(t_data *data)
 	data->player.attack_side = 0;
 	data->player.enemiespos.x = 0;
 	data->player.enemiespos.y = 0;
-	data->utils.whichside = 0;
 	data->utils.collect = 0;
 	data->utils.loop = 0;
 	data->utils.loop1 = 0;
@@ -55,6 +54,7 @@ void	init_data2(t_data *data)
 	data->utils.i_player = 0;
 	data->utils.i_starte = 0;
 	data->utils.i_startp = 0;
+	data->utils.movecount = 0;
 	init_textures(data);
 	init_collec(data);
 	init_player(data);

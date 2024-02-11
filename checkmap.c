@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkmap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: klopez <klopez@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kenz <kenz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 19:27:49 by klopez            #+#    #+#             */
-/*   Updated: 2024/02/11 19:47:52 by klopez           ###   ########.fr       */
+/*   Updated: 2024/02/12 00:17:14 by kenz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ void	checkmap(t_data *data, int fd)
 	data->axes.x = ft_strlen(data->map[utils.line]);
 	data->axes.y = utils.line + 1;
 	if (checkone(data->map[utils.line]) == 0 && utils.i == utils.j + 1
-		&& data->utils.counte == 1 && utils.countp == 1)
+		&& data->utils.counte == 1 && utils.countp == 1
+		&& data->utils.countc > 0)
 		return ;
 	else
 	{

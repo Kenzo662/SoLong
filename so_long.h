@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: klopez <klopez@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kenz <kenz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 17:38:57 by klopez            #+#    #+#             */
-/*   Updated: 2024/02/11 18:45:56 by klopez           ###   ########.fr       */
+/*   Updated: 2024/02/12 00:16:39 by kenz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ typedef struct s_utils
 	int			l;
 	int			loopcount;
 	int			loopcount1;
-	int			whichside;
 	int			collect;
 	int			loop;
 	int			loop1;
@@ -62,6 +61,7 @@ typedef struct s_utils
 	int			c_way;
 	int			e_way;
 	char		**mapcheck;
+	int			movecount;
 }				t_utils;
 
 typedef struct s_axes
