@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   animstart.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kenz <kenz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: klopez <klopez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 14:20:34 by klopez            #+#    #+#             */
-/*   Updated: 2024/02/12 00:16:34 by kenz             ###   ########.fr       */
+/*   Updated: 2024/02/13 16:38:33 by klopez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,37 @@ int	startenemiesanim(t_data *data)
 	}
 	enemies_anim(data);
 	enemies_attack_anim(data);
+	return (0);
+}
+
+void	printstring(t_data *data)
+{
+	char	*count;
+
+	count = ft_itoa(data->utils.movecount);
+	data->utils.str = ft_strjoin("Moves = ", count);
+	mlx_put_image_to_window(data->mlx, data->win, data->textures->wall.img, 0,
+		0);
+	mlx_put_image_to_window(data->mlx, data->win, data->textures->wall.img, 64,
+		0);
+	mlx_string_put(data->mlx, data->win, 16, 16, 0x000000, data->utils.str);
+	free(data->utils.str);
+	free(count);
+}
+
+int	checkpath(char *path, int ac)
+{
+	int	i;
+
+	if (ac == 2)
+	{
+		i = ft_strlen(path) - 1;
+		if (path[i] != 'r' || path[i - 1] != 'e' || path[i - 2] != 'b' || path[i
+				- 3] != '.' || ft_strlen(path) <= 4)
+		{
+			ft_printf("Please, send a .ber map\n");
+			exit(0);
+		}
+	}
 	return (0);
 }

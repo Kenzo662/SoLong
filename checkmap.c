@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkmap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kenz <kenz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: klopez <klopez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 19:27:49 by klopez            #+#    #+#             */
-/*   Updated: 2024/02/12 00:17:14 by kenz             ###   ########.fr       */
+/*   Updated: 2024/02/13 19:47:27 by klopez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ void	malloctab(t_data *data, char *path)
 	utils.k = 0;
 	fd = open(path, O_RDONLY);
 	utils.str = get_next_line(fd);
+	if (utils.str == NULL)
+	{
+		ft_printf("The map is invalid! Please, send a valid map!");
+		exit(0);
+	}
 	while (utils.str)
 	{
 		free(utils.str);
@@ -51,24 +56,25 @@ void	checkmap(t_data *data, int fd)
 	utils.countp = 0;
 	utils.line = 0;
 	data->map[utils.line] = get_next_line(fd);
-	utils.i = ft_strlen(data->map[utils.line]);
 	utils.bytes = 1;
+	utils.i = ft_strlen(data->map[utils.line]);
 	if (checkone(data->map[utils.line]) == 1)
 		is_invalid(data, &utils);
 	checkchar(data, fd, &utils);
 	utils.j = ft_strlen(data->map[utils.line]);
 	data->axes.x = ft_strlen(data->map[utils.line]);
 	data->axes.y = utils.line + 1;
-	if (checkone(data->map[utils.line]) == 0 && utils.i == utils.j + 1
-		&& data->utils.counte == 1 && utils.countp == 1
-		&& data->utils.countc > 0)
+	if (data->map[utils.line][utils.j - 1] == '\n')
+		data->axes.x -= 1;
+	if (checkone(data->map[utils.line]) == 0
+		&& (utils.i == utils.j + 1 || (utils.i == utils.j
+				&& data->map[utils.line][utils.j - 1] == '\n'))
+			&& data->utils.counte == 1 && utils.countp == 1
+			&& data->utils.countc > 0)
 		return ;
 	else
-	{
-		ft_printf("The map is invalid! Please, send a valid map!");
-		freetabfull(data->map, data);
-		exit(0);
-	}
+		return (ft_printf("The map is invalid! Please, send a valid map!"),
+			freetabfull(data->map, data), exit(0));
 }
 
 void	checkchar(t_data *data, int fd, t_utils *utils)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kenz <kenz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: klopez <klopez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 17:38:57 by klopez            #+#    #+#             */
-/*   Updated: 2024/02/12 00:16:39 by kenz             ###   ########.fr       */
+/*   Updated: 2024/02/13 16:22:11 by klopez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,5 +179,7 @@ void			freetabfull(char **tab, t_data *data);
 void			freetab(char **tab);
 void			checkway(t_data *data);
 void			is_invalid(t_data *data, t_utils *utils);
+void			printstring(t_data *data);
+int				checkpath(char *path, int ac);
 
 #endif

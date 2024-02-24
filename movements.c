@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kenz <kenz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: klopez <klopez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:06:37 by klopez            #+#    #+#             */
-/*   Updated: 2024/02/11 23:59:14 by kenz             ###   ########.fr       */
+/*   Updated: 2024/02/13 14:27:20 by klopez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	moveup(t_data *data)
 	(data->map[data->player.destpos.y][data->player.destpos.x] != 'E') &&
 	(data->map[data->player.destpos.y][data->player.destpos.x] != '1'))
 		data->utils.movecount++;
+	printstring(data);
 }
 
 void	movedown(t_data *data)
@@ -72,6 +73,7 @@ void	movedown(t_data *data)
 	(data->map[data->player.destpos.y][data->player.destpos.x] != 'E') &&
 	(data->map[data->player.destpos.y][data->player.destpos.x] != '1'))
 		data->utils.movecount++;
+	printstring(data);
 }
 
 void	moveleft(t_data *data)
@@ -99,6 +101,7 @@ void	moveleft(t_data *data)
 	(data->map[data->player.destpos.y][data->player.destpos.x] != 'E') &&
 	(data->map[data->player.destpos.y][data->player.destpos.x] != '1'))
 		data->utils.movecount++;
+	printstring(data);
 }
 
 void	moveright(t_data *data)
@@ -126,4 +129,5 @@ void	moveright(t_data *data)
 	(data->map[data->player.destpos.y][data->player.destpos.x] != 'E') &&
 	(data->map[data->player.destpos.y][data->player.destpos.x] != '1'))
 		data->utils.movecount++;
+	printstring(data);
 }
